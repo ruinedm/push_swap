@@ -1,56 +1,56 @@
 #include "push_swap.h"
 
-
-int check_duplicates(int *stack,int stack_size)
+int check_duplicates(t_node *stack)
 {
-    int i;
-    int j;
+    t_node *current_node;
+    t_node *looping_node;
+    current_node = stack;
 
-    i = 0;
-    while(i < stack_size  - 1)
+    while(current_node->next)
     {
-        j = stack_size - 1;
-        while(i < j)
+        looping_node = current_node->next;
+        while(looping_node)
         {
-            if(stack[i] == stack[j])
+            if(current_node->data == looping_node->data)
                 return (0);
-            j--;
+            looping_node = looping_node->next;
         }
-        i++;
+        current_node = current_node->next;
     }
-    return(1);
+    return (1);
 }
 
-
-void parser(char *argv[], int stack_size, int *new_stack)
+t_node *parser(char *argv[], int stack_size)
 {
+    t_node *head;
+    t_node *current_node;
+    int value;
     int i;
-    int j;
 
     i = 0;
-    while(i < stack_size)
+    head = NULL;
+    while(i <= stack_size)
     {
-        new_stack[i] = atoi(argv[i + 1]);
+        value = atoi(argv[i + 1]);
+        current_node = ft_lstnew_int(value);
+        ft_lstaddback_int(&head, current_node);
         i++;
     }
+    return (head);
 }
 
 int main(int argc, char *argv[])
 {
-    int *stack_a;
     int stack_size;
-
+    t_node *stack_a;
     stack_size = argc - 1;
     if(argc == 1)
     {
         printf("Error");
         return (1);
     }
-    stack_a = malloc(stack_size * sizeof(int));
-    if(!stack_a)
-        return (1);
-    parser(argv, stack_size, stack_a);
-    if(!check_duplicates(stack_a, stack_size))
+    stack_a = parser(argv, stack_size);
+    if(!check_duplicates(stack_a))
     {
         printf("Error");
         return (0);
