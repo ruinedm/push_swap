@@ -32,7 +32,7 @@ t_node *parser(char *argv[], int stack_size)
     error_flag = 1;
     head = NULL;
     while(i < stack_size)
-    
+    {
         value = ft_atoi(argv[i + 1], &error_flag);
         if(error_flag)
         {
@@ -45,7 +45,7 @@ t_node *parser(char *argv[], int stack_size)
                 ft_lstclear_int(head);
                 return(NULL);
             }
-    
+    }
     return (head);
 }
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     {
         printf("Error, NO ARGS");
         return (0);
-    
+    }
     stack_a = parser(argv, stack_size);
     if(!stack_a)
     {
