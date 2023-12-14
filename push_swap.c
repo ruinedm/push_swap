@@ -24,19 +24,34 @@ t_node *parser(char *argv[], int stack_size)
 {
     t_node *head;
     t_node *current_node;
+    int error_flag;
     int value;
     int i;
 
     i = 0;
+    error_flag = 1;
     head = NULL;
-    while(i <= stack_size)
-    {
-        value = atoi(argv[i + 1]);
-        current_node = ft_lstnew_int(value);
-        ft_lstaddback_int(&head, current_node);
-        i++;
-    }
+    while(i < stack_size)
+    
+        value = ft_atoi(argv[i + 1], &error_flag);
+        if(error_flag)
+        {
+            current_node = ft_lstnew_int(value);
+            ft_lstaddback_int(&head, current_node);
+            i++;
+        }
+        else
+            {
+                ft_lstclear_int(head);
+                return(NULL);
+            }
+    
     return (head);
+}
+
+void print(int data)
+{
+    printf("Value: %i\n", data);
 }
 
 int main(int argc, char *argv[])
@@ -46,13 +61,19 @@ int main(int argc, char *argv[])
     stack_size = argc - 1;
     if(argc == 1)
     {
-        printf("Error");
+        printf("Error, NO ARGS");
+        return (0);
+    
+    stack_a = parser(argv, stack_size);
+    if(!stack_a)
+    {
+        printf("Error, parsing problem");
         return (0);
     }
-    stack_a = parser(argv, stack_size);
     if(!check_duplicates(stack_a))
     {
-        printf("Error");
+        printf("Error, duplicates detected");
         return (0);
     }
+    ft_lstiter_int(stack_a, print);
 }
