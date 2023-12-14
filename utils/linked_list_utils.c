@@ -31,10 +31,19 @@ void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add)
     ft_lstlast_int(*ptr_to_node)->next = node_to_add;
 }
 
+void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
+{
+    if(node_to_add)
+    {
+        node_to_add->next = *ptr_to_node;
+        *ptr_to_node = node_to_add;
+    }
+}
+
 void ft_lstiter_int(t_node *head, void(*f)(int))
 {
     t_node *copy = head;
-    while(copy->next != NULL)
+    while(copy->next)
     {
         f(copy->data);
         copy = copy->next;

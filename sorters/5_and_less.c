@@ -20,3 +20,11 @@ void sort3(t_node *stack_a)
     else if(a < b && a < c && b > c)
         printf("sa\nra");
 }
+
+void sort4(t_node **stack_a)
+{
+    t_node *stack_b;
+
+    stack_b = NULL;
+    
+}
