@@ -4,5 +4,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+typedef struct s_node
+{
+    int data;
+    struct s_node *next;
+} t_node;
 
+
+// LINKED LIST (FOR INT USE ONLY) UTILS
+t_node *ft_lstnew_int(int data);
+void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);
+t_node *ft_lstlast_int(t_node *node);
+void ft_lstiter_int(t_node *head, void(*f)(int));
 #endif
