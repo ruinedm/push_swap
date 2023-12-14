@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     if(argc == 1)
     {
         printf("Error");
-        return (1);
+        return (0);
     }
     stack_a = parser(argv, stack_size);
     if(!check_duplicates(stack_a))
