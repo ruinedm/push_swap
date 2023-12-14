@@ -2,6 +2,27 @@
 #include <string.h>
 #include <stdlib.h>
 
+int check_duplicates(int *stack,int stack_size)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(i < stack_size  - 1)
+    {
+        j = stack_size - 1;
+        while(i < j)
+        {
+            if(stack[i] == stack[j])
+                return (0);
+            j--;
+        }
+        i++;
+    }
+    return(1);
+}
+
+
 void parser(char *argv[], int stack_size, int *new_stack)
 {
     int i;
@@ -30,7 +51,9 @@ int main(int argc, char *argv[])
     if(!stack_a)
         return (1);
     parser(argv, stack_size, stack_a);
-    for(int i = 0; i < stack_size; i++)
-        printf("%i ", stack_a[i]);
-
+    if(!check_duplicates(stack_a, stack_size))
+    {
+        printf("Error");
+        return (0);
+    }
 }
