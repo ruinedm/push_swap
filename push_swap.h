@@ -10,6 +10,10 @@ typedef struct s_node
     struct s_node *next;
 } t_node;
 
+// SORTERS
+void sort_handler(t_node *stack_a, int stack_size);
+void sort3(t_node *stack_a);
+
 // GENERAL UTILS
 int ft_strlen(char *str);
 int	ft_atoi(char *str, int *error_flag);
