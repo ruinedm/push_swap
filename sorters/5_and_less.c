@@ -44,6 +44,8 @@ void sort4(t_node **stack_a)
     px(&stack_b, stack_a, 0);
 }
 
+
+// ADD MEDIAN SORTING PLEASE
 void sort5(t_node **stack_a)
 {
     t_node *stack_b;
@@ -51,10 +53,7 @@ void sort5(t_node **stack_a)
 
     if(is_reversed(*stack_a))
     {
-        rx(stack_a, 0);
-        rx(stack_a, 0);
-        rx(stack_a, 0);
-        rx(stack_a, 0);
+        // DEPENDS ON MEDIAN
         return;
     }
     smallest_node = get_smallest_node(*stack_a);
