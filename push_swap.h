@@ -11,12 +11,22 @@ typedef struct s_node
 } t_node;
 
 // SORTERS
-void sort_handler(t_node *stack_a, int stack_size);
-void sort3(t_node *stack_a);
+void sort_handler(t_node **stack_a, int stack_size);
+void sort3(t_node **stack_a);
+void sort4(t_node **stack_a);
+void sort5(t_node **stack_a);
+
+// MOVES
+void px(t_node **s_stack, t_node **r_stack, int flag);
+void rx(t_node **stack,int flag);
+void rrx(t_node **stack, int flag);
+void sx(t_node **stack, int flag);
 
 // GENERAL UTILS
 int ft_strlen(char *str);
 int	ft_atoi(char *str, int *error_flag);
+t_node *get_smallest_node(t_node *stack);
+int is_reversed(t_node *stack);
 
 // LINKED LIST (FOR INT USE ONLY) UTILS
 t_node *ft_lstnew_int(int data);

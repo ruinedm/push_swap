@@ -20,8 +20,8 @@ int check_duplicates(t_node *stack)
 {
     t_node *current_node;
     t_node *looping_node;
-    current_node = stack;
 
+    current_node = stack;
     while(current_node->next)
     {
         looping_node = current_node->next;
@@ -93,5 +93,10 @@ int main(int argc, char *argv[])
     }
     if(is_sorted(stack_a))
         return (0);
-    sort_handler(stack_a, stack_size);
+    printf("Stack size: %i\n",stack_size);
+    ft_lstiter_int(stack_a, print);
+    printf("AFTER:\n");
+    sort_handler(&stack_a, stack_size);
+    ft_lstiter_int(stack_a, print);
+    printf("Address: %p:\n", *stack_a);
 }
