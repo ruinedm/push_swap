@@ -21,6 +21,9 @@ void px(t_node **s_stack, t_node **r_stack, int flag);
 void rx(t_node **stack,int flag);
 void rrx(t_node **stack, int flag);
 void sx(t_node **stack, int flag);
+void ss(t_node **stack_a, t_node **stack_b);
+void rr(t_node **stack_a, t_node **stack_b);
+void rrr(t_node **stack_a, t_node **stack_b);
 
 // GENERAL UTILS
 int ft_strlen(char *str);
