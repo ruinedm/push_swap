@@ -20,6 +20,8 @@ void sort_handler(t_node **stack_a, int stack_size)
         sort4(stack_a);
     else if(stack_size == 5)
         sort5(stack_a);
+    else
+        sort_all(stack_a, stack_size);
 }
 
 int is_reversed(t_node *stack)
@@ -93,4 +95,12 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
             rx(s_stack, flag);
     }
     px(s_stack, r_stack, !flag);
+}
+
+void push_elements(t_node **s_stack, t_node **r_stack, int flag)
+{
+    while (*s_stack != NULL)
+    {
+        px(s_stack, r_stack, flag);
+    }
 }
