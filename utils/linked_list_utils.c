@@ -62,3 +62,15 @@ void ft_lstclear_int(t_node *head)
         head = tmp;
     }
 }
+
+int ft_lstsize_int(t_node *lst)
+{
+    int i;
+
+    while(lst)
+    {
+        i++;
+        lst = lst->next;
+    }
+    return (i);
+}

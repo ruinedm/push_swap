@@ -35,9 +35,9 @@ void rrx(t_node **stack, int flag)
     t_node *last;
 
     if(flag == 0)
-        printf("rra");
+        printf("rra\n");
     else if(flag == 1)
-        printf("rrb");
+        printf("rrb\n");
     last = ft_lstlast_int(*stack);
     looping_node = *stack;
     while(looping_node->next != last)

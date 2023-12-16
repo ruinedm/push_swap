@@ -26,8 +26,9 @@ void sx(t_node **stack, int flag);
 int ft_strlen(char *str);
 int	ft_atoi(char *str, int *error_flag);
 t_node *get_smallest_node(t_node *stack);
+int get_smallest_node_position(t_node *stack);
 int is_reversed(t_node *stack);
-
+void push_smallest(t_node **s_stack, t_node **r_stack, int flag);
 // LINKED LIST (FOR INT USE ONLY) UTILS
 t_node *ft_lstnew_int(int data);
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);
@@ -35,5 +36,6 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add);
 t_node *ft_lstlast_int(t_node *node);
 void ft_lstiter_int(t_node *head, void(*f)(int));
 void ft_lstclear_int(t_node *head);
+int ft_lstsize_int(t_node *lst);
 
 #endif

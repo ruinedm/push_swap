@@ -57,3 +57,40 @@ t_node *get_smallest_node(t_node *stack)
     }
     return (smallest_node);
 }
+
+int get_smallest_node_position(t_node *stack) 
+{
+    t_node *current_node = stack;
+    int smallest_data = current_node->data;
+    int smallest_position = 0;
+    int current_position = 0;
+
+    while(current_node) {
+        if(current_node->data < smallest_data) {
+            smallest_data = current_node->data;
+            smallest_position = current_position;
+        }
+        current_node = current_node->next;
+        current_position++;
+    }
+    return (smallest_position);
+}
+
+void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
+{
+    t_node *smallest_node;
+    int median_pos;
+    int small_pos;
+
+    median_pos = ft_lstsize_int(*s_stack) / 2;
+    small_pos = get_smallest_node_position(*s_stack);
+    smallest_node = get_smallest_node(*s_stack);
+    while(*s_stack != smallest_node)
+    {
+        if (small_pos < median_pos)
+            rrx(s_stack, flag);
+        else
+            rx(s_stack, flag);
+    }
+    px(s_stack, r_stack, !flag);
+}

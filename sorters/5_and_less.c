@@ -33,37 +33,21 @@ void sort3(t_node **stack_a)
 void sort4(t_node **stack_a)
 {
     t_node *stack_b;
-    t_node *smallest_node;
 
     stack_b = NULL;
-    smallest_node = get_smallest_node(*stack_a);
-    while(*stack_a != smallest_node)
-        rx(stack_a, 0);
-    px(stack_a, &stack_b, 1);
+    push_smallest(stack_a, &stack_b, 0);
     sort3(stack_a);
     px(&stack_b, stack_a, 0);
 }
 
 
-// ADD MEDIAN SORTING PLEASE
 void sort5(t_node **stack_a)
 {
     t_node *stack_b;
-    t_node *smallest_node;
 
-    if(is_reversed(*stack_a))
-    {
-        // DEPENDS ON MEDIAN
-        return;
-    }
-    smallest_node = get_smallest_node(*stack_a);
-    while(*stack_a != smallest_node)
-        rx(stack_a, 0);
-    px(stack_a, &stack_b, 1);
-    smallest_node = get_smallest_node(*stack_a);
-    while(*stack_a != smallest_node)
-        rx(stack_a, 0);
-    px(stack_a, &stack_b, 1);
+    stack_b = NULL;
+    push_smallest(stack_a, &stack_b, 0);
+    push_smallest(stack_a, &stack_b, 0);
     sort3(stack_a);
     px(&stack_b, stack_a, 0);
     px(&stack_b, stack_a, 0);
