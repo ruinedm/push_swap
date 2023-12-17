@@ -67,6 +67,7 @@ int ft_lstsize_int(t_node *lst)
 {
     int i;
 
+    i = 0;
     while(lst)
     {
         i++;

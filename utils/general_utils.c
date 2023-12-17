@@ -89,7 +89,7 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
     smallest_node = get_smallest_node(*s_stack);
     while(*s_stack != smallest_node)
     {
-        if (small_pos < median_pos)
+        if (small_pos > median_pos)
             rrx(s_stack, flag);
         else
             rx(s_stack, flag);
