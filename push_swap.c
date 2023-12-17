@@ -65,34 +65,32 @@ t_node *parser(char *argv[], int stack_size)
     return (head);
 }
 
+int free_and_end(t_node *stack_a)
+{
+    printf("Error\n");
+    ft_lstclear_int(stack_a);
+    return (0);
+}
+
+
 void print(int data)
 {
-    printf("Value: %i\n", data);
+    printf("%d\n", data);
 }
 
 int main(int argc, char *argv[])
 {
     int stack_size;
     t_node *stack_a;
+
+    stack_a = NULL;
     stack_size = argc - 1;
     if(argc == 1)
-    {
-        printf("Error, NO ARGS");
-        return (0);
-    }
+        return(0);
     stack_a = parser(argv, stack_size);
-    if(!stack_a)
-    {
-        printf("Error, parsing problem");
-        return (0);
-    }
-    if(!check_duplicates(stack_a))
-    {
-        printf("Error, duplicates detected");
-        return (0);
-    }
-    if(is_sorted(stack_a))
-        return (0);
+    if(!stack_a  || !check_duplicates(stack_a) || is_sorted(stack_a))
+        return(free_and_end(stack_a));
     sort_handler(&stack_a, stack_size);
     ft_lstiter_int(stack_a, print);
+    ft_lstclear_int(stack_a);
 }

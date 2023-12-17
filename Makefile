@@ -10,7 +10,7 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(FLAGS) $^ -o $@
+	$(CC) $(FLAGS) -g $^ -o $@
 
 fclean: 
 	$(RM) $(NAME)

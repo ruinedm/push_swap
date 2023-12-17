@@ -35,7 +35,7 @@ int is_reversed(t_node *stack);
 void push_smallest(t_node **s_stack, t_node **r_stack, int flag);
 void push_elements(t_node **s_stack, t_node **r_stack, int flag);
 void sort_all(t_node **stack_a, int stack_size);
-
+void sort_100(t_node **stack_a, t_node **stack_b);
 // LINKED LIST (FOR INT USE ONLY) UTILS
 t_node *ft_lstnew_int(int data);
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);

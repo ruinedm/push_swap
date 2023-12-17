@@ -21,7 +21,7 @@ static int	int_checker(const char *str, int i, int sign, int *error_flag)
 	nb = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nb = nb * 10 + str[i] - '0';
+		nb = nb * 10 + str[i] - 48;
 		i++;
 	}
     if(sign == 1 && nb > INT_MAX)
