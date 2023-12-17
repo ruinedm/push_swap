@@ -15,4 +15,6 @@ $(NAME): $(SRC)
 fclean: 
 	$(RM) $(NAME)
 
+re: fclean all
+
 .PHONY: all fclean
