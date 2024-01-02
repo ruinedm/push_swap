@@ -74,10 +74,10 @@ t_node *parser(char *argv[], int stack_size)
 
     i = 0;
     error_flag = 1;
-    wc = 0;
     head = NULL;
     while(i < stack_size)
     {
+        wc = 0;
         str = argv[i + 1];
         type = str_type(str);
         if(type == NORMAL_NUM)

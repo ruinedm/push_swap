@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include <i386/limits.h>
-
 
 int is_sorted(t_node *stack)
 {
