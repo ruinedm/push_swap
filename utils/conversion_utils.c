@@ -1,19 +1,5 @@
 #include "../push_swap.h"
 
-static int check_if_all_numeric(char *str)
-{
-    int i;
-
-    i = 0;
-    if(str[i] == '-' || str[i] == '+')
-        i++;
-    while (str[i] >= '0' && str[i] <= '9')
-        i++;
-    if(i == ft_strlen(str))
-        return (1);
-    return (0);
-}
-
 static int	int_checker(const char *str, int i, int sign, int *error_flag)
 {
 	unsigned long long	nb;
@@ -44,20 +30,16 @@ int	ft_atoi(char *str, int *error_flag)
 
 	sign = 1;
 	i = 0;
-    if(!check_if_all_numeric(str))
+ 
+    while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+        i++;
+    if (str[i] == '-' || str[i] == '+')
     {
-        *error_flag = 0;
-        return (-1);
+        if (str[i] == '-')
+            sign = -1;
+        i++;
     }
-	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] == '0')
-		i++;
-	return (int_checker(str, i, sign, error_flag));
+    while (str[i] == '0')
+        i++;
+    return (int_checker(str, i, sign, error_flag));
 }

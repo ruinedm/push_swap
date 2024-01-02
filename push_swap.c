@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <i386/limits.h>
 
 
 int is_sorted(t_node *stack)
@@ -36,35 +37,6 @@ int check_duplicates(t_node *stack)
     return (1);
 }
 
-t_node *parser(char *argv[], int stack_size)
-{
-    t_node *head;
-    t_node *current_node;
-    int error_flag;
-    int value;
-    int i;
-
-    i = 0;
-    error_flag = 1;
-    head = NULL;
-    while(i < stack_size)
-    {
-        value = ft_atoi(argv[i + 1], &error_flag);
-        if(error_flag)
-        {
-            current_node = ft_lstnew_int(value);
-            ft_lstaddback_int(&head, current_node);
-            i++;
-        }
-        else
-            {
-                ft_lstclear_int(head);
-                return(NULL);
-            }
-    }
-    return (head);
-}
-
 int free_and_end(t_node *stack_a)
 {
     printf("Error\n");
@@ -88,9 +60,10 @@ int main(int argc, char *argv[])
     if(argc == 1)
         return(0);
     stack_a = parser(argv, stack_size);
-    if(!stack_a  || !check_duplicates(stack_a) || is_sorted(stack_a))
-        return(free_and_end(stack_a));
-    sort_handler(&stack_a, stack_size);
     ft_lstiter_int(stack_a, print);
-    ft_lstclear_int(stack_a);
+
+    // if(!stack_a  || !check_duplicates(stack_a) || is_sorted(stack_a))
+    //     return(free_and_end(stack_a));
+    // sort_handler(&stack_a, stack_size);
+    // ft_lstclear_int(stack_a);
 }
