@@ -43,11 +43,6 @@ int free_and_end(t_node *stack_a)
 }
 
 
-void print(int data)
-{
-    printf("%d\n", data);
-}
-
 int main(int argc, char *argv[])
 {
     int stack_size;
@@ -58,10 +53,17 @@ int main(int argc, char *argv[])
     if(argc == 1)
         return(0);
     stack_a = parser(argv, stack_size);
+<<<<<<< HEAD
     ft_lstiter_int(stack_a, print);
 
     // if(!stack_a  || !check_duplicates(stack_a) || is_sorted(stack_a))
     //     return(free_and_end(stack_a));
     // sort_handler(&stack_a, stack_size);
+=======
+    if(!stack_a  || !check_duplicates(stack_a) || is_sorted(stack_a))
+        return(free_and_end(stack_a));
+    sort_handler(&stack_a, stack_size);
+    // ft_lstiter_int(stack_a, print);
+>>>>>>> f31c159 (ok)
     // ft_lstclear_int(stack_a);
 }

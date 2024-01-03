@@ -6,6 +6,8 @@ RM = rm -f
 CC = gcc
 HEADER = push_swap.h
 NAME = push_swap
+VAL = valgrind --leak-check=full -s
+TEST = 2134 458 2345 -1000 4329 543
 
 all: $(NAME)
 
@@ -16,5 +18,8 @@ fclean:
 	$(RM) $(NAME)
 
 re: fclean all
+
+test: re
+	$(VAL) ./$(NAME) $(TEST)
 
 .PHONY: all fclean
