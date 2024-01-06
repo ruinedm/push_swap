@@ -11,9 +11,13 @@
 #define INVALID_INPUT -1
 
 
+#define STACK_A 0
+#define STACK_B 1
+
 typedef struct s_node
 {
     int data;
+    int rank;
     struct s_node *next;
 } t_node;
 
@@ -41,6 +45,7 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag);
 void push_elements(t_node **s_stack, t_node **r_stack, int flag);
 void sort_all(t_node **stack_a, int stack_size);
 void sort_100(t_node **stack_a, t_node **stack_b);
+void rank_nodes(t_node *stack_a);
 
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
@@ -51,7 +56,7 @@ t_node *ft_lstnew_int(int data);
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);
 void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add);
 t_node *ft_lstlast_int(t_node *node);
-void ft_lstiter_int(t_node *head, void(*f)(int));
+void ft_lstiter_int(t_node *head, void(*f)(int, int));
 void ft_lstclear_int(t_node *head);
 int ft_lstsize_int(t_node *lst);
 

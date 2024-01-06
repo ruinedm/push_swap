@@ -40,15 +40,15 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
     }
 }
 
-void ft_lstiter_int(t_node *head, void(*f)(int))
+void ft_lstiter_int(t_node *head, void(*f)(int, int))
 {
     t_node *copy = head;
     while(copy->next)
     {
-        f(copy->data);
+        f(copy->data, copy->rank);
         copy = copy->next;
     }
-    f(copy->data);
+    f(copy->data, copy->rank);
 }
 
 void ft_lstclear_int(t_node *head)

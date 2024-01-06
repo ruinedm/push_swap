@@ -38,27 +38,19 @@ int is_reversed(t_node *stack)
     return (1);
 }
 
-t_node *get_smallest_node(t_node *stack)
-{
-    t_node *smallest_node;
-    t_node *current_node;
-    t_node *looping_node;
+t_node *get_smallest_node(t_node *stack) {
 
-    current_node = stack;
-    smallest_node = current_node;
-    while(current_node->next)
-    {
-        looping_node = current_node->next;
-        while(looping_node)
-        {
-            if(looping_node->data < smallest_node->data)
-                smallest_node = looping_node;
-            looping_node = looping_node->next;
-        }
+    t_node *smallest_node = stack;
+    t_node *current_node = stack->next;
+
+    while (current_node != NULL) {
+        if (current_node->data < smallest_node->data)
+            smallest_node = current_node;
         current_node = current_node->next;
     }
-    return (smallest_node);
+    return smallest_node;
 }
+
 
 int get_smallest_node_position(t_node *stack) 
 {
@@ -76,6 +68,61 @@ int get_smallest_node_position(t_node *stack)
         current_position++;
     }
     return (smallest_position);
+}
+
+int *copy_stack_to_array(t_node *stack)
+{
+    int *copy_array;
+    int stack_size;
+    int i;
+
+    i = 0;
+    stack_size = ft_lstsize_int(stack);
+    copy_array = malloc(stack_size);
+    while(i < stack_size)
+    {
+        copy_array[i] = stack->data;
+        stack = stack->next;
+        i++;
+    }
+    return copy_array;
+}
+void bubble_sort(int *arr, int n) {
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (*(arr + j) > *(arr + j + 1)) {
+                // Swap arr[j] and arr[j + 1]
+                temp = *(arr + j);
+                *(arr + j) = *(arr + j + 1);
+                *(arr + j + 1) = temp;
+            }
+        }
+    }
+}
+
+
+void rank_nodes(t_node *stack_a)
+{
+    t_node *looping_node;
+    int *copy_array;
+    int stack_size;
+    int i;
+
+    i = 0;
+    stack_size = ft_lstsize_int(stack_a);
+    copy_array = copy_stack_to_array(stack_a);
+    bubble_sort(copy_array, stack_size);
+    looping_node = stack_a;
+    while(i < stack_size)
+    {
+        while(looping_node->data != copy_array[i])
+            looping_node = looping_node->next;
+        looping_node->rank = i + 1;
+        looping_node = stack_a;
+        i++;
+    }
+    free(copy_array);
 }
 
 void push_smallest(t_node **s_stack, t_node **r_stack, int flag)

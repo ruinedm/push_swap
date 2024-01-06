@@ -4,9 +4,9 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
 {
     t_node *tmp;
 
-    if(flag == 0)
+    if(flag == STACK_A)
         printf("pa\n");
-    else if (flag == 1)
+    else if (flag == STACK_B)
         printf("pb\n");
     tmp = *s_stack;
     *s_stack = (*s_stack)->next;
@@ -18,9 +18,9 @@ void rx(t_node **stack, int flag)
     t_node *tmp;
     t_node *last;
 
-    if(flag == 0)
+    if(flag == STACK_A)
         printf("ra\n");
-    else if (flag == 1)
+    else if (flag == STACK_B)
         printf("rb\n");
     tmp = *stack;
     last = ft_lstlast_int(*stack);
@@ -34,9 +34,9 @@ void rrx(t_node **stack, int flag)
     t_node *looping_node;
     t_node *last;
 
-    if(flag == 0)
+    if(flag == STACK_A)
         printf("rra\n");
-    else if(flag == 1)
+    else if(flag == STACK_B)
         printf("rrb\n");
     last = ft_lstlast_int(*stack);
     looping_node = *stack;
@@ -51,9 +51,9 @@ void sx(t_node **stack, int flag)
     t_node *first_node;
     t_node *second_node;
 
-    if(flag == 0)
+    if(flag == STACK_A)
         printf("sa\n");
-    else if(flag == 1)
+    else if(flag == STACK_B)
         printf("sb\n");
     first_node = *stack;
     second_node = (*stack)->next;
