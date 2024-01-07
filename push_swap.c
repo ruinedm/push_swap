@@ -35,12 +35,6 @@ int check_duplicates(t_node *stack)
     return (1);
 }
 
-int free_and_end(t_node *stack_a)
-{
-    printf("Error\n");
-    ft_lstclear_int(stack_a);
-    return (0);
-}
 
 
 void print(int data, int rank)
@@ -60,7 +54,7 @@ int main(int argc, char *argv[])
     stack_a = parser(argv, stack_size);
 
     if(!stack_a  || !check_duplicates(stack_a))
-        return(free_and_end(stack_a));
+        return(printf("Error\n"), 0);
     rank_nodes(stack_a);
     ft_lstiter_int(stack_a, print);
 

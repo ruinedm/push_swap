@@ -7,6 +7,7 @@ t_node *ft_lstnew_int(int data)
     if(!node)
         return (NULL);
     node->data = data;
+    node->rank = 0;
     node->next = NULL;
     return (node);
 }

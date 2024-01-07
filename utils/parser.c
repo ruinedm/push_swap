@@ -96,7 +96,10 @@ t_node *parser(char *argv[], int stack_size)
             }
         }
         else if(type == INVALID_INPUT)
+        {
+            ft_lstclear_int(head);
             return NULL;
+        }
         i++;
     }
     return (head);
