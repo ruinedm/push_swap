@@ -64,6 +64,6 @@ int main(int argc, char *argv[])
     rank_nodes(stack_a);
     ft_lstiter_int(stack_a, print);
 
-    // sort_handler(&stack_a, stack_size);
+    //sort_handler(&stack_a, stack_size);
     ft_lstclear_int(stack_a);
 }

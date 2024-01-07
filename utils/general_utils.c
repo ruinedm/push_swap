@@ -78,7 +78,7 @@ int *copy_stack_to_array(t_node *stack)
 
     i = 0;
     stack_size = ft_lstsize_int(stack);
-    copy_array = malloc(stack_size);
+    copy_array = malloc(stack_size * sizeof(int));
     while(i < stack_size)
     {
         copy_array[i] = stack->data;

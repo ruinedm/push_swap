@@ -67,7 +67,6 @@ t_node *parser(char *argv[], int stack_size)
     t_node *head;
     int error_flag;
     int i;
-    int j;
     int wc;
     int type;
     char *str;
@@ -84,7 +83,6 @@ t_node *parser(char *argv[], int stack_size)
             add_to_list(&head, str, &error_flag);
         else if (type == COMPLICATED_INPUT)
         {
-            j = 0;
             while(wc < word_count(argv[i + 1], ' '))
             {
                 while(*str && *str == ' ')
