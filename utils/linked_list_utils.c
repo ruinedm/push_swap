@@ -3,6 +3,7 @@
 t_node *ft_lstnew_int(int data)
 {
     t_node *node;
+
     node = malloc(sizeof(t_node));
     if(!node)
         return (NULL);
@@ -43,6 +44,8 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
 
 void ft_lstiter_int(t_node *head, void(*f)(int, int))
 {
+    if(!head)
+        printf("HEAD IS NULL");
     t_node *copy = head;
     while(copy->next)
     {

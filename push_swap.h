@@ -14,6 +14,9 @@
 #define STACK_A 0
 #define STACK_B 1
 
+#define FIRST 0
+#define LAST 1
+
 typedef struct s_node
 {
     int data;
@@ -41,11 +44,15 @@ int ft_strlen(char *str);
 t_node *get_smallest_node(t_node *stack);
 int get_smallest_node_position(t_node *stack);
 int is_reversed(t_node *stack);
-void push_smallest(t_node **s_stack, t_node **r_stack, int flag);
+void push_smallest(t_node **s_stack, t_node **r_stack,int flag);
 void push_elements(t_node **s_stack, t_node **r_stack, int flag);
 void sort_all(t_node **stack_a, int stack_size);
 void sort_100(t_node **stack_a, t_node **stack_b);
-void rank_nodes(t_node *stack_a);
+void rank_nodes(t_node *stack_a, int stack_size);
+t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size);
+void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag);
+void get_node_to_top(t_node **s_stack, t_node *node_x, int flag);
+void get_node_to_bottom(t_node **stack, t_node *node_x, int flag);
 
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);

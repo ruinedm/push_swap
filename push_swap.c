@@ -37,10 +37,10 @@ int check_duplicates(t_node *stack)
 
 
 
-void print(int data, int rank)
-{
-    printf("VALUE: %d RANK: %d\n", data, rank);
-}
+// void print(int data, int rank)
+// {
+//     printf("VALUE: %d RANK: %d\n", data, rank);
+// }
 
 int main(int argc, char *argv[])
 {
@@ -55,9 +55,8 @@ int main(int argc, char *argv[])
 
     if(!stack_a  || !check_duplicates(stack_a))
         return(printf("Error\n"), 0);
-    rank_nodes(stack_a);
-    ft_lstiter_int(stack_a, print);
-
-    //sort_handler(&stack_a, stack_size);
+    //rank_nodes(stack_a);
+    sort_handler(&stack_a, stack_size);
+    // ft_lstiter_int(stack_a, print);
     ft_lstclear_int(stack_a);
 }
