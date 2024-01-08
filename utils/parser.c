@@ -7,7 +7,11 @@ static int str_type(char *str)
     i = 0;
 
     if(str[i] == '-' || str[i] == '+')
+    {
+        if(str[i + 1] == '\0' || !(str[i + 1] >= '0' && str[i + 1] <= '9'))
+            return (INVALID_INPUT);
         i++;
+    }
     while((str[i] >= '0' && str[i] <= '9'))
         i++;
     if(i == ft_strlen(str))
@@ -15,8 +19,8 @@ static int str_type(char *str)
     while(str[i])
     {
         if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || 
-             ((str[i] == '-' || str[i] == '+') && (str[i + 1] >= '0' && str[i + 1] <= '9'))))
-            return (INVALID_INPUT);
+              (str[i] == ' ' && (str[i + 1] == '-' || str[i + 1] == '+') && (str[i + 2] >= '0' && str[i + 2] <= '9'))))
+            return INVALID_INPUT;
         i++;
     }
     return (COMPLICATED_INPUT);
