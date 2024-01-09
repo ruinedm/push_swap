@@ -4,39 +4,34 @@ void print(int data, int rank)
 {
     printf("VALUE: %d RANK: %d\n", data, rank);
 }
-// Helper function to find the correct position in stack B
-int find_insert_position(t_node *stack_b, t_node *to_push) {
-    int pos = 0;
-    t_node *current = stack_b;
-    while (current != NULL && current->rank < to_push->rank) {
-        pos++;
-        current = current->next;
+
+int get_node_type(t_node *stack, int rank, t_node **insert_before)
+{
+    t_node *looping_node;
+
+    looping_node = stack;
+    while(looping_node)
+    {
+        if(looping_node->rank > rank)
+            break;
+        looping_node = looping_node->next;
     }
-    return pos;
-}
-
-// Helper function to rotate stack B to the correct position
-void rotate_to_position(t_node **stack_b, int pos, int stack_size) {
-    if (pos <= stack_size / 2) {
-        for (int i = 0; i < pos; i++) {
-            rx(stack_b, STACK_B); // Rotate
-        }
-    } else {
-        for (int i = 0; i < stack_size - pos; i++) {
-            rrx(stack_b, STACK_B); // Reverse Rotate
-        }
+    if(looping_node == stack) // loop broke from first iteration => rank is smaller than all
+    {
+        *insert_before = NULL;
+        return (SMALLER_THAN_ALL);
+    }
+    else if(looping_node == NULL) // loop never broke (or loop never worked :D first iteration) => rank is less than all or is the first => SAME ACTION
+    {
+        *insert_before = NULL;
+        return (BIGGER_THAN_ALL);
+    }
+    else // loop broke on the node with the rank just bigger than our node
+    {
+        *insert_before = looping_node;
+        return (BETWEEN_X_AND_Y);
     }
 }
-
-// Function to insert node in correct position in stack B
-void insert_in_correct_position(t_node **stack_b, t_node *to_push, int stack_size) {
-    int insert_pos = find_insert_position(*stack_b, to_push);
-    rotate_to_position(stack_b, insert_pos, stack_size);
-    px(&to_push, stack_b, STACK_B); // Push the node to stack B
-    // Rotate stack B back to its original order if necessary
-    //rotate_to_position(stack_b, stack_size - insert_pos - 1, stack_size);
-}
-
 
 
 void sort_all(t_node **stack_a, int stack_size)
@@ -47,69 +42,47 @@ void sort_all(t_node **stack_a, int stack_size)
     int chunk_start;
     int chunk_end;
     int push_counter;
+    int type;
+    int count;
+    int mode;
 
     push_counter = 0;
     stack_b = NULL;
     rank_nodes(*stack_a, stack_size);
-
+    mode = 0;
     chunk_start = 1;
     while (chunk_start <= stack_size)
     {
-        chunk_end = chunk_start + 19;
+        chunk_end = chunk_start + 9;
         if (chunk_end > stack_size) chunk_end = stack_size;
 
-
-        while(push_counter < 4)
+        push_counter = 0;
+        while(push_counter < (chunk_end - chunk_start + 1))
         {
             to_push = find_optimal_move_node(*stack_a, chunk_start, chunk_end, stack_size);
-            if(stack_b)
-            {
-                insert_before = stack_b;
-                while(insert_before && insert_before->rank < to_push->rank)
-                    insert_before = insert_before->next;
-            }
-            if(insert_before == NULL)
+            type = get_node_type(stack_b, to_push->rank, &insert_before);
+            if(type == SMALLER_THAN_ALL)
+                push_node_x(stack_a, &stack_b,to_push, STACK_A);
+            else if (type == BIGGER_THAN_ALL)
             {
                 push_node_x(stack_a, &stack_b,to_push, STACK_A);
                 rx(&stack_b, STACK_B);
             }
-            else 
+            else
             {
-                get_node_to_top(&stack_b, insert_before, STACK_B);
-                // push_node_x(stack_a, &stack_b,to_push, STACK_A);
-                // get_node_to_bottom(&stack_b, to_push, STACK_B);
+                count = get_node_to_top(&stack_b, insert_before, STACK_B, &mode);
+                push_node_x(stack_a, &stack_b,to_push, STACK_A);
+                reverse_get_node_to_top(&stack_b, count, STACK_B, mode);
             }
-
             push_counter++;
         }
-        chunk_start += 20; // Move to the next chunk
+        chunk_start += 10;
 
     }
-    printf("STACK A:\n");
-    ft_lstiter_int(*stack_a, print);
-    printf("STACK B:\n");
-    ft_lstiter_int(stack_b, print);
-
-        // while (!is_chunk_sorted(*stack_a, chunk_start, chunk_end))
-        // {
-        //     to_push = find_optimal_move_node(*stack_a, chunk_start, chunk_end, stack_size);
-        //     move_node_to_top(stack_a, to_push, stack_size);
-        //     px(stack_a, &stack_b, STACK_B);
-        // }
-
-
-    // Reassemble the sorted list from stack B to stack A
-    // while (stack_b != NULL)
-    // {
-    //     // Logic to handle sorting and pushing from stack B to A
-    //     push_to_stack_a(&stack_b, stack_a);
-    // }
-
-    // Optional: Print stacks for debugging
     // printf("STACK A:\n");
     // ft_lstiter_int(*stack_a, print);
-    // printf("STACK B:\n");
-    // ft_lstiter_int(stack_b, print);
+    printf("STACK B:\n");
+    ft_lstiter_int(stack_b, print);
 }
 
 // You'll need to implement these helper functions:

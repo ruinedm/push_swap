@@ -222,42 +222,51 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
     px(s_stack, r_stack, !flag);
 }
 
-void get_node_to_bottom(t_node **stack, t_node *node_x, int flag)
+
+
+int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
 {
     int med_pos;
     int x_pos;
-    t_node *last_node;
+    int count;
 
+    count = 0;
     med_pos = ft_lstsize_int(*stack) / 2;
     x_pos = get_node_position(*stack, node_x);
-    last_node = ft_lstlast_int(*stack);
-    while(last_node != node_x)
+    if(x_pos > med_pos)
     {
-        if (x_pos <= med_pos)
-            rx(stack, flag);
-        else
+        *mode = REVERSE_RRX;
+        while(*stack != node_x)
+        {
             rrx(stack, flag);
-
-        last_node = ft_lstlast_int(*stack);
+            count++;
+        }
+    }
+    else
+    {
+        *mode = REVERSE_RX;
+        while(*stack != node_x)
+        {
+            rx(stack, flag);
+            count++;
+        }
+    }
+    return (count);
+}
+void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode)
+{
+    if(mode == REVERSE_RRX)
+        rotation_count++;
+    for(int i = 0; i < rotation_count; i++) {
+        if(mode == REVERSE_RRX) {
+            rx(stack, flag);
+        } else if(mode == REVERSE_RX) {
+            rrx(stack, flag);
+        }
     }
 }
 
 
-void get_node_to_top(t_node **stack, t_node *node_x, int flag)
-{
-    int med_pos;
-    int x_pos;
-
-    med_pos = ft_lstsize_int(*stack) / 2;
-    x_pos = get_node_position(*stack, node_x);
-    while(*stack != node_x)
-    {
-        if(x_pos > med_pos)
-            rrx(stack, flag);
-        else
-            rx(stack, flag);
-    }
-}
 void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag)
 {
     int med_pos;

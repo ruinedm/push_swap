@@ -10,12 +10,18 @@
 #define COMPLICATED_INPUT 1
 #define INVALID_INPUT -1
 
-
 #define STACK_A 0
 #define STACK_B 1
 
 #define FIRST 0
 #define LAST 1
+
+#define BIGGER_THAN_ALL 0
+#define SMALLER_THAN_ALL 1
+#define BETWEEN_X_AND_Y 2
+
+#define REVERSE_RX 0
+#define REVERSE_RRX 1
 
 typedef struct s_node
 {
@@ -51,9 +57,8 @@ void sort_100(t_node **stack_a, t_node **stack_b);
 void rank_nodes(t_node *stack_a, int stack_size);
 t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size);
 void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag);
-void get_node_to_top(t_node **s_stack, t_node *node_x, int flag);
-void get_node_to_bottom(t_node **stack, t_node *node_x, int flag);
-
+int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode);
+void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode);
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
 t_node *parser(char *argv[], int stack_size);
