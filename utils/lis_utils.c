@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_int_arr(int *arr, int arr_size) {
+void print_int_arr(int *arr, int arr_size) 
+{
     int i = 0;
-    while (i < arr_size) {
+    while (i < arr_size) 
+    {
         printf("OUTPUT %i: %i\n", i, arr[i]);
         i++;
     }
 }
 
-int get_latest_index(int *arr, int arr_size, int num) {
+int get_latest_index(int *arr, int arr_size, int num) 
+{
     int i = 0;
     int latest_index = -1;
 
-    while (i < arr_size) {
+    while (i < arr_size) 
+    {
         if (arr[i] == num)
             latest_index = i;
         i++;
@@ -21,11 +25,13 @@ int get_latest_index(int *arr, int arr_size, int num) {
     return latest_index;
 }
 
-int max(int *arr, int arr_size) {
+int max(int *arr, int arr_size) 
+{
     int i = 0;
     int max_value = arr[0];
 
-    while (i < arr_size) {
+    while (i < arr_size) 
+    {
         if (max_value < arr[i]) 
             max_value = arr[i];
         i++;
@@ -33,7 +39,8 @@ int max(int *arr, int arr_size) {
     return max_value;
 }
 
-int get_lis_length(int *arr, int arr_size) {
+int get_lis_length(int *arr, int arr_size) 
+{
     int i;
     int j;
     int temp;
