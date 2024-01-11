@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../push_swap.h"
 
 void print_int_arr(int *arr, int arr_size) 
 {
@@ -39,7 +40,7 @@ int max(int *arr, int arr_size)
     return max_value;
 }
 
-int get_lis_length(int *arr, int arr_size) 
+int* get_lis(int *arr, int arr_size, int *lis_len) 
 {
     int i;
     int j;
@@ -56,7 +57,7 @@ int get_lis_length(int *arr, int arr_size)
     {
         free(length);
         free(subsequence);
-        return -1;
+        return (NULL);
     }
 
     i = 1;
@@ -88,34 +89,74 @@ int get_lis_length(int *arr, int arr_size)
     }
 
     len = max(length, arr_size);
+    *lis_len = len;
     list = (int *)malloc(len * sizeof(int));
     if (!list) 
     {
         free(length);
         free(subsequence);
-        return -1;
+        return (NULL);
     }
 
     index = get_latest_index(length, arr_size, len);
     i = len - 1;
-    while (index != -1) 
+    while (index != -1)
     {
         list[i--] = arr[index];
         index = subsequence[index];
     }
 
-    print_int_arr(list, len);
+    // print_int_arr(list, len);
 
     free(length);
     free(subsequence);
-    free(list);
-    return len;
+    // free(list); 
+    return (list);
+}
+t_node *find_node(t_node *stack, int data)
+{
+    t_node *looping_node;
+
+    looping_node = stack;
+    while(looping_node)
+    {
+        if(looping_node->data == data)
+            return (looping_node);
+        looping_node = looping_node->next;
+    }
+    return (NULL);
+}
+void set_is_lis(t_node *stack, int *lis_arr, int lis_len)
+{
+    int i;
+
+    i = 0;
+    while(i < lis_len)
+    {
+        find_node(stack, lis_arr[i])->is_lis = TRUE;
+        i++;
+    }
+
+}
+void analyze_stack(t_node *stack, int stack_size)
+{
+    int *copy_array;
+    int lis_len;
+    int *lis;
+
+    copy_array = copy_stack_to_array(stack);
+    lis = get_lis(copy_array, stack_size, &lis_len);
+    set_is_lis(stack, lis, lis_len);
+    free(copy_array);
+    free(lis);
 }
 
-int main() 
-{
-    int arr[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
-    int arr_size = sizeof(arr) / sizeof(arr[0]);
-    printf("LIS LEN: %i\n", get_lis_length(arr, arr_size));
-    return 0;
-}
+// int main() 
+// {
+//     int lis_len;
+//     int arr[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
+//     int arr_size = sizeof(arr) / sizeof(arr[0]);
+//     int *list = get_lis(arr, 12, &lis_len);
+//     print_int_arr(list, lis_len);
+//     return 0;
+// }

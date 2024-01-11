@@ -23,10 +23,14 @@
 #define REVERSE_RX 0
 #define REVERSE_RRX 1
 
+#define TRUE 1
+#define FALSE 0
+
 typedef struct s_node
 {
     int data;
     int rank;
+    int is_lis;
     struct s_node *next;
 } t_node;
 
@@ -60,6 +64,8 @@ void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag);
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode);
 void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode);
 int get_node_position(t_node *stack, t_node *target);
+int *copy_stack_to_array(t_node *stack);
+void analyze_stack(t_node *stack, int stack_size);
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
 t_node *parser(char *argv[], int stack_size);
@@ -69,7 +75,7 @@ t_node *ft_lstnew_int(int data);
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);
 void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add);
 t_node *ft_lstlast_int(t_node *node);
-void ft_lstiter_int(t_node *head, void(*f)(int, int));
+void ft_lstiter_int(t_node *head, void(*f)(int, int, int));
 void ft_lstclear_int(t_node *head);
 int ft_lstsize_int(t_node *lst);
 

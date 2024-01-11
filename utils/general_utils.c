@@ -21,8 +21,8 @@ void sort_handler(t_node **stack_a, int stack_size)
         sort4(stack_a);
     else if(stack_size == 5)
         sort5(stack_a);
-    else
-        sort_all(stack_a, stack_size);
+    // else
+    //     sort_all(stack_a, stack_size);
 }
 
 int is_reversed(t_node *stack)
