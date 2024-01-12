@@ -11,15 +11,15 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CC) $(FLAGS) -g $^ -o $@
+	@($(CC) $(FLAGS) -g $^ -o $@)
 
 fclean: 
-	$(RM) $(NAME)
+	@($(RM) $(NAME))
 
 re: fclean all
 
 .PHONY: all fclean re
 
 run: $(NAME)
-	./$(NAME) $(ARGS)
+	@(./$(NAME) $(ARGS))
 

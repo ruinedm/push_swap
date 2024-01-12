@@ -77,7 +77,7 @@ int* get_lis(int *arr, int arr_size, int *lis_len)
             if (arr[j] < arr[i]) 
             {
                 temp = length[j] + 1;
-                if (temp >= length[i]) 
+                if (temp >= length[i])
                 {
                     length[i] = temp;
                     subsequence[i] = j;

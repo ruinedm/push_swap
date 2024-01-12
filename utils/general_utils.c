@@ -153,7 +153,7 @@ void rank_nodes(t_node *stack_a, int stack_size)
     free(copy_array);
 }
 int get_node_position(t_node *stack, t_node *target) {
-    int i = 0;
+    int i = 1;
     while(stack) 
     {
         if(stack == target)
@@ -198,6 +198,7 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size)
     mode = 1;
     mid = stack_size / 2;
     pos = get_node_position(stack, target);
+    // printf("CURRENT POSITION OF RANK: %i IS %i\n", target->rank, pos);
     if(pos < mid)
         looping_node = stack;
     else
@@ -322,7 +323,8 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
     x_pos = get_node_position(*stack, node_x);
     if(x_pos > med_pos)
     {
-        *mode = REVERSE_RRX;
+        if(mode)
+            *mode = REVERSE_RRX;
         while(*stack != node_x)
         {
             rrx(stack, flag);
@@ -331,7 +333,8 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
     }
     else
     {
-        *mode = REVERSE_RX;
+        if(mode)
+            *mode = REVERSE_RX;
         while(*stack != node_x)
         {
             rx(stack, flag);
