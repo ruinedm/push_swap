@@ -255,7 +255,6 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
     t_node *next_node;
 
     pivot_node = find_node(*s_stack, stack_size / 2, FIND_BY_RANK);
-    printf("PIVOT NODE DATA: %i, PIVOT NODE RANK %i\n", pivot_node->data, pivot_node->rank);
     looping_node = *s_stack;
     while(looping_node)
     {
@@ -263,15 +262,9 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         if(looping_node->is_lis == FALSE)
         {
             if(looping_node->data > pivot_node->data)
-            {
-                printf("NO RRX FOR %i\n", looping_node->data);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
-            }
             else
-            {
-                printf("YES RRX FOR %i\n", looping_node->data);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
-            }
         }
         looping_node = next_node;
     }
