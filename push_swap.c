@@ -37,13 +37,7 @@ int check_duplicates(t_node *stack)
 
 
 
-void print(int data, int rank, int is_lis)
-{
-    if(is_lis)
-        printf("VALUE: %d RANK: %d IS_LIS: TRUE\n", data, rank);
-    else
-        printf("VALUE: %d RANK: %d IS_LIS: FALSE\n", data, rank);
-}
+
 
 int main(int argc, char *argv[])
 {
@@ -57,10 +51,7 @@ int main(int argc, char *argv[])
     stack_a = parser(argv, stack_size);
 
     if(!stack_a  || !check_duplicates(stack_a))
-        return(printf("Error\n"), 0);
-    analyze_stack(stack_a, stack_size);
-    //rank_nodes(stack_a);
-    // sort_handler(&stack_a, stack_size);
-    ft_lstiter_int(stack_a, print);
+        return(printf("Error\n"), 0);    
+    sort_handler(&stack_a, stack_size);
     ft_lstclear_int(stack_a);
 }

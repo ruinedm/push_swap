@@ -1,6 +1,14 @@
 #include "../push_swap.h"
 #include <stdio.h>
 
+void print(int data, int rank, int is_lis)
+{
+    if(is_lis)
+        printf("VALUE: %d RANK: %d IS_LIS: TRUE\n", data, rank);
+    else
+        printf("VALUE: %d RANK: %d IS_LIS: FALSE\n", data, rank);
+}
+
 int ft_strlen(char *str)
 {
     int i;
@@ -9,6 +17,24 @@ int ft_strlen(char *str)
     while(str[i])
         i++;
     return (i);
+}
+t_node *find_node(t_node *stack, int data, int mode)
+{
+    t_node *looping_node;
+    int find_by;
+
+    looping_node = stack;
+    while(looping_node)
+    {
+        if(mode == FIND_BY_DATA)
+            find_by = looping_node->data;
+        else
+            find_by = looping_node->rank;
+        if(find_by == data)
+            return (looping_node);
+        looping_node = looping_node->next;
+    }
+    return looping_node;
 }
 
 void sort_handler(t_node **stack_a, int stack_size)
@@ -21,8 +47,8 @@ void sort_handler(t_node **stack_a, int stack_size)
         sort4(stack_a);
     else if(stack_size == 5)
         sort5(stack_a);
-    // else
-    //     sort_all(stack_a, stack_size);
+    else
+        sort_all(stack_a, stack_size);
 }
 
 int is_reversed(t_node *stack)
@@ -222,8 +248,35 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
     px(s_stack, r_stack, !flag);
 }
 
+void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
+{
+    t_node *looping_node;
+    t_node *pivot_node;
+    t_node *next_node;
 
-
+    pivot_node = find_node(*s_stack, stack_size / 2, FIND_BY_RANK);
+    printf("PIVOT NODE DATA: %i, PIVOT NODE RANK %i\n", pivot_node->data, pivot_node->rank);
+    looping_node = *s_stack;
+    while(looping_node)
+    {
+        next_node = looping_node->next;
+        if(looping_node->is_lis == FALSE)
+        {
+            if(looping_node->data > pivot_node->data)
+            {
+                printf("NO RRX FOR %i\n", looping_node->data);
+                push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
+            }
+            else
+            {
+                printf("YES RRX FOR %i\n", looping_node->data);
+                push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
+            }
+        }
+        looping_node = next_node;
+    }
+    rx(s_stack, STACK_A);
+}
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
 {
     int med_pos;
@@ -267,7 +320,7 @@ void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int m
 }
 
 
-void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag)
+void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, int mode)
 {
     int med_pos;
     int x_pos;
@@ -282,6 +335,8 @@ void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag)
             rx(s_stack, flag);
     }
     px(s_stack, r_stack, !flag);
+    if(mode == PUSH_AND_RX)
+        rx(r_stack, !flag);
 }
 void push_elements(t_node **s_stack, t_node **r_stack, int flag)
 {

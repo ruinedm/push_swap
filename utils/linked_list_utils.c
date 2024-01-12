@@ -46,7 +46,10 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
 void ft_lstiter_int(t_node *head, void(*f)(int, int, int))
 {
     if(!head)
-        printf("HEAD IS NULL");
+    {
+        printf("HEAD IS NULL\n");
+        return;
+    }
     t_node *copy = head;
     while(copy->next)
     {

@@ -38,6 +38,7 @@ void rrx(t_node **stack, int flag)
         printf("rra\n");
     else if(flag == STACK_B)
         printf("rrb\n");
+    if(!*stack || ft_lstsize_int(*stack) == 1) return;
     last = ft_lstlast_int(*stack);
     looping_node = *stack;
     while(looping_node->next != last)

@@ -26,6 +26,12 @@
 #define TRUE 1
 #define FALSE 0
 
+#define FIND_BY_DATA 0
+#define FIND_BY_RANK 1
+
+#define NORMAL_PUSH 0
+#define PUSH_AND_RX 1
+
 typedef struct s_node
 {
     int data;
@@ -50,6 +56,7 @@ void rr(t_node **stack_a, t_node **stack_b);
 void rrr(t_node **stack_a, t_node **stack_b);
 
 // GENERAL UTILS
+void print(int data, int rank, int is_lis);
 int ft_strlen(char *str);
 t_node *get_smallest_node(t_node *stack);
 int get_smallest_node_position(t_node *stack);
@@ -60,12 +67,14 @@ void sort_all(t_node **stack_a, int stack_size);
 void sort_100(t_node **stack_a, t_node **stack_b);
 void rank_nodes(t_node *stack_a, int stack_size);
 t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size);
-void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag);
+void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, int mode);
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode);
 void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode);
 int get_node_position(t_node *stack, t_node *target);
+t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);
 void analyze_stack(t_node *stack, int stack_size);
+void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size);
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
 t_node *parser(char *argv[], int stack_size);

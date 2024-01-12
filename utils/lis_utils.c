@@ -77,7 +77,7 @@ int* get_lis(int *arr, int arr_size, int *lis_len)
             if (arr[j] < arr[i]) 
             {
                 temp = length[j] + 1;
-                if (temp >= length[i]) 
+                if (temp >= length[i])
                 {
                     length[i] = temp;
                     subsequence[i] = j;
@@ -113,19 +113,7 @@ int* get_lis(int *arr, int arr_size, int *lis_len)
     // free(list); 
     return (list);
 }
-t_node *find_node(t_node *stack, int data)
-{
-    t_node *looping_node;
 
-    looping_node = stack;
-    while(looping_node)
-    {
-        if(looping_node->data == data)
-            return (looping_node);
-        looping_node = looping_node->next;
-    }
-    return (NULL);
-}
 void set_is_lis(t_node *stack, int *lis_arr, int lis_len)
 {
     int i;
@@ -133,7 +121,7 @@ void set_is_lis(t_node *stack, int *lis_arr, int lis_len)
     i = 0;
     while(i < lis_len)
     {
-        find_node(stack, lis_arr[i])->is_lis = TRUE;
+        find_node(stack, lis_arr[i],FIND_BY_DATA)->is_lis = TRUE;
         i++;
     }
 
@@ -145,6 +133,7 @@ void analyze_stack(t_node *stack, int stack_size)
     int *lis;
 
     copy_array = copy_stack_to_array(stack);
+    rank_nodes(stack, stack_size);
     lis = get_lis(copy_array, stack_size, &lis_len);
     set_is_lis(stack, lis, lis_len);
     free(copy_array);
