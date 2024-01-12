@@ -229,6 +229,34 @@ t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, in
         return (last);
     return (first);
 }
+void fix_lis(t_node **stack)
+{
+    t_node *looping_node;
+    int i;
+
+    i = 0;
+    looping_node = *stack;
+    while(looping_node)
+    {
+        if(looping_node->rank > looping_node->next->rank)
+            break;
+        looping_node = looping_node->next;
+    }
+    looping_node = looping_node->next;
+    // printf("LOOPING NODE RANK %i\n", looping_node->rank);
+    // printf("LOOPING NODE PREV RANK %i\n", looping_node->prev->rank);
+    // printf("LOOPING NODE PREV PREV RANK %i\n", looping_node->prev->prev->rank);
+    printf("CURRENT LOOPING NODE RANK: %i\n", looping_node->rank);
+    // printf("LOOPING NODE PREV PREV PREV RANK %i\n", looping_node->prev->prev->prev->rank);
+    while(looping_node && i<10)
+    {
+        looping_node = looping_node->prev;
+        rx(stack, STACK_A);
+        i++;
+    }
+}
+
+
 void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
 {
     t_node *smallest_node;
@@ -273,18 +301,14 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         if(looping_node->is_lis == FALSE)
         {
             if(looping_node->rank > stack_size / 2)
-            {
-                printf("NORMAL :%i\n", looping_node->rank);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
-            }
             else
-            {
-                printf("PUSH_AND_RX: %i\n", looping_node->rank);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
-            }
         }
         looping_node = next_node;
     }
+    // if(is_sorted(*s_stack)) printf("IT'S SORTED\n"); else printf("IT'S NOT\n");
+    // fix_lis(s_stack);
     // rx(s_stack, STACK_A); // I NEED TO FIND OUT WHAT TRIGGERS THIS SHIT ASAP
 }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)

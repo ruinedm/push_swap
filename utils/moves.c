@@ -10,6 +10,7 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
         printf("pb\n");
     tmp = *s_stack;
     *s_stack = (*s_stack)->next;
+    (*s_stack)->prev = NULL;
     ft_lstaddfront_int(r_stack, tmp);
 }
 

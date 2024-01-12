@@ -46,6 +46,7 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
     if(node_to_add)
     {
         node_to_add->next = *ptr_to_node;
+        node_to_add->prev = NULL;
         if (*ptr_to_node)
             (*ptr_to_node)->prev = node_to_add;
         *ptr_to_node = node_to_add;
@@ -65,6 +66,22 @@ void ft_lstiter_int(t_node *head, void(*f)(int, int, int))
     {
         f(copy->data, copy->rank, copy->is_lis);
         copy = copy->next;
+    }
+    f(copy->data, copy->rank, copy->is_lis);
+}
+
+void ft_lstiterback_int(t_node *head, void(*f)(int, int, int))
+{
+    if(!head)
+    {
+        printf("HEAD IS NULL\n");
+        return;
+    }
+    t_node *copy = ft_lstlast_int(head);
+    while(copy->prev)
+    {
+        f(copy->data, copy->rank, copy->is_lis);
+        copy = copy->prev;
     }
     f(copy->data, copy->rank, copy->is_lis);
 }

@@ -77,6 +77,8 @@ t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);
 void analyze_stack(t_node *stack, int stack_size);
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size);
+void fix_lis(t_node **stack);
+
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
 t_node *parser(char *argv[], int stack_size);
@@ -89,5 +91,5 @@ t_node *ft_lstlast_int(t_node *node);
 void ft_lstiter_int(t_node *head, void(*f)(int, int, int));
 void ft_lstclear_int(t_node *head);
 int ft_lstsize_int(t_node *lst);
-
+void ft_lstiterback_int(t_node *head, void(*f)(int, int, int));
 #endif
