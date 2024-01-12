@@ -1,20 +1,5 @@
 #include "push_swap.h"
 
-int is_sorted(t_node *stack)
-{
-    t_node *current_node;
-
-    current_node = stack;
-    while (current_node != NULL && current_node->next != NULL)
-    {
-
-        if (current_node->data > current_node->next->data)
-            return (0);
-        current_node = current_node->next;
-    }
-    return (1);
-}
-
 int check_duplicates(t_node *stack)
 {
     t_node *current_node;

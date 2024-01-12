@@ -38,6 +38,7 @@ typedef struct s_node
     int rank;
     int is_lis;
     struct s_node *next;
+    struct s_node *prev;
 } t_node;
 
 // SORTERS
@@ -56,6 +57,7 @@ void rr(t_node **stack_a, t_node **stack_b);
 void rrr(t_node **stack_a, t_node **stack_b);
 
 // GENERAL UTILS
+int is_sorted(t_node *stack);
 void print(int data, int rank, int is_lis);
 int ft_strlen(char *str);
 t_node *get_smallest_node(t_node *stack);

@@ -26,22 +26,32 @@ t_node *ft_lstlast_int(t_node *node)
 
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add)
 {
+    t_node *last_node;
+
     if(!*ptr_to_node)
     {
         *ptr_to_node = node_to_add;
-        return;
     }
-    ft_lstlast_int(*ptr_to_node)->next = node_to_add;
+    else
+    {
+        last_node = ft_lstlast_int(*ptr_to_node);
+        last_node->next = node_to_add;
+        node_to_add->prev = last_node;
+    }
 }
+
 
 void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
 {
     if(node_to_add)
     {
         node_to_add->next = *ptr_to_node;
+        if (*ptr_to_node)
+            (*ptr_to_node)->prev = node_to_add;
         *ptr_to_node = node_to_add;
     }
 }
+
 
 void ft_lstiter_int(t_node *head, void(*f)(int, int, int))
 {

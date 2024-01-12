@@ -15,19 +15,26 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
 
 void rx(t_node **stack, int flag)
 {
-    t_node *tmp;
+    t_node *first;
     t_node *last;
 
     if(flag == STACK_A)
         printf("ra\n");
     else if (flag == STACK_B)
         printf("rb\n");
-    tmp = *stack;
+
+    if (!*stack || !(*stack)->next)
+        return;
+
+    first = *stack;
     last = ft_lstlast_int(*stack);
-    last->next = *stack;
-    *stack = (*stack)->next;
-    tmp->next = (NULL);
+    *stack = first->next;
+    (*stack)->prev = NULL;
+    last->next = first;
+    first->prev = last;
+    first->next = NULL;
 }
+
 
 void rrx(t_node **stack, int flag)
 {
@@ -44,6 +51,7 @@ void rrx(t_node **stack, int flag)
     while(looping_node->next != last)
         looping_node = looping_node->next;
     looping_node->next = NULL;
+    last->prev = NULL;
     ft_lstaddfront_int(stack, last);
 }
 

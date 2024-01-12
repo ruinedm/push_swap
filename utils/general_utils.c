@@ -247,28 +247,45 @@ void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
     }
     px(s_stack, r_stack, !flag);
 }
+int is_sorted(t_node *stack)
+{
+    t_node *current_node;
 
+    current_node = stack;
+    while (current_node != NULL && current_node->next != NULL)
+    {
+        if(current_node->next->rank != current_node->rank + 1)
+            return (FALSE);
+        current_node = current_node->next;
+    }
+    return (TRUE);
+}
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
 {
     t_node *looping_node;
-    t_node *pivot_node;
     t_node *next_node;
 
-    pivot_node = find_node(*s_stack, stack_size / 2, FIND_BY_RANK);
+    // printf("PIVOT RANK: %i\n", pivot_node->rank);
     looping_node = *s_stack;
     while(looping_node)
     {
         next_node = looping_node->next;
         if(looping_node->is_lis == FALSE)
         {
-            if(looping_node->data > pivot_node->data)
+            if(looping_node->rank > stack_size / 2)
+            {
+                printf("NORMAL :%i\n", looping_node->rank);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
+            }
             else
+            {
+                printf("PUSH_AND_RX: %i\n", looping_node->rank);
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
+            }
         }
         looping_node = next_node;
     }
-    rx(s_stack, STACK_A);
+    // rx(s_stack, STACK_A); // I NEED TO FIND OUT WHAT TRIGGERS THIS SHIT ASAP
 }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
 {
