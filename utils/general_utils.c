@@ -186,7 +186,7 @@ t_node* get_first_and_last(t_node *stack, int start, int end, int mode)
     return (current_end);
 }
 
-int get_cost_to_top(t_node *stack, t_node *target, int stack_size)
+int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direction, int method)
 {
     t_node *looping_node;
     int mid;
@@ -194,42 +194,51 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size)
     int mode;
     int cost;
 
+    if(!r_direction)
+        r_direction = &mode;
     cost = 0;
     mode = 1;
     mid = stack_size / 2;
     pos = get_node_position(stack, target);
     // printf("CURRENT POSITION OF RANK: %i IS %i\n", target->rank, pos);
+    if(method == RX)
+        pos = mid - 1;
+    else if(method == RRX)
+        pos = mid + 1;
     if(pos < mid)
+    {
+        *r_direction = RX;
         looping_node = stack;
+    }
     else
     {
+        *r_direction = RRX;
         looping_node = target;
-        mode = 0;
     }
     while(looping_node)
     {
-        if(looping_node == target && mode)
+        if(looping_node == target && !(*r_direction))
             return (cost);
         looping_node = looping_node->next;
         cost++;
     }
     return (cost);
 }
-t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size)
-{
-    t_node *first;
-    t_node *last;
-    int cost_first;
-    int cost_last;
+// t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size)
+// {
+//     t_node *first;
+//     t_node *last;
+//     int cost_first;
+//     int cost_last;
 
-    first = get_first_and_last(stack, chunk_start, chunk_end, FIRST);
-    last = get_first_and_last(stack, chunk_start, chunk_end, LAST);
-    cost_first = get_cost_to_top(stack, first, stack_size);
-    cost_last = get_cost_to_top(stack, last, stack_size);
-    if(cost_first > cost_last)
-        return (last);
-    return (first);
-}
+//     first = get_first_and_last(stack, chunk_start, chunk_end, FIRST);
+//     last = get_first_and_last(stack, chunk_start, chunk_end, LAST);
+//     cost_first = get_cost_to_top(stack, first, stack_size);
+//     cost_last = get_cost_to_top(stack, last, stack_size);
+//     if(cost_first > cost_last)
+//         return (last);
+//     return (first);
+// }
 void fix_lis(t_node **stack)
 {
     t_node *looping_node;

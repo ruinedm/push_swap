@@ -88,7 +88,7 @@ void rr(t_node **stack_a, t_node **stack_b)
 
 void rrr(t_node **stack_a, t_node **stack_b)
 {
-    rx(stack_a, -1);
-    rx(stack_b, -1);
-    printf("rr\n");
+    rrx(stack_a, -1);
+    rrx(stack_b, -1);
+    printf("rrr\n");
 }

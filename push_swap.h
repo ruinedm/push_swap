@@ -32,6 +32,10 @@
 #define NORMAL_PUSH 0
 #define PUSH_AND_RX 1
 
+#define RX 0
+#define RRX 1
+#define OPTIMAL 2
+
 typedef struct s_node
 {
     int data;
@@ -65,7 +69,7 @@ int get_smallest_node_position(t_node *stack);
 int is_reversed(t_node *stack);
 void push_smallest(t_node **s_stack, t_node **r_stack,int flag);
 void push_elements(t_node **s_stack, t_node **r_stack, int flag);
-int get_cost_to_top(t_node *stack, t_node *target, int stack_size);
+int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direction, int method);
 void sort_all(t_node **stack_a, int stack_size);
 void sort_100(t_node **stack_a, t_node **stack_b);
 void rank_nodes(t_node *stack_a, int stack_size);

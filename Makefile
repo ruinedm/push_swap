@@ -1,4 +1,3 @@
-# Your existing Makefile content
 SORTERS = sorters/5_and_less.c sorters/algo.c
 UTILS = utils/conversion_utils.c utils/parser.c utils/general_utils.c utils/linked_list_utils.c utils/moves.c utils/lis_utils.c
 SRC = push_swap.c $(SORTERS) $(UTILS)
@@ -11,7 +10,7 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(SRC)
-	@($(CC) $(FLAGS) -g $^ -o $@)
+	@($(CC) -g $^ -o $@)
 
 fclean: 
 	@($(RM) $(NAME))
@@ -22,4 +21,3 @@ re: fclean all
 
 run: $(NAME)
 	@(./$(NAME) $(ARGS))
-

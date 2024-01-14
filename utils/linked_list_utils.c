@@ -29,9 +29,7 @@ void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add)
     t_node *last_node;
 
     if(!*ptr_to_node)
-    {
         *ptr_to_node = node_to_add;
-    }
     else
     {
         last_node = ft_lstlast_int(*ptr_to_node);
