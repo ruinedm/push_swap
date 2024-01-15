@@ -165,36 +165,62 @@ t_node *get_node_with_least_combo(t_node *stack_b)
 void sort_all(t_node **stack_a, int stack_size)
 {
     t_node *stack_b;
-    t_node *foo;
-    t_node *loo;
-    t_node *before_foo;
-    t_node *before_loo;
     t_node *to_push;
     t_node *push_before;
-    // int mode;
-    // int count;
-    int cost_foo;
-    int cost_loo;
-    int cost_push_before;
-    int cost_to_push;
-    int r_direction_to_push;
-    int r_direction_push_before;
+    int *mv;
     int i;
+    int action;
     int MAX_ITERATION;
 
-    i = 0;
     MAX_ITERATION = 0;
     stack_b = NULL;
+    action = RX;
     analyze_stack(*stack_a, stack_size);
     push_with_pivot(stack_a, &stack_b, stack_size);
-    while(MAX_ITERATION < 1)
+    while(ft_lstsize_int(stack_b) > 1)
     {
+        i = 0;
         iterate_and_calculate(*stack_a, stack_b);
-        push_node_x(&stack_b, stack_a, get_node_with_least_combo(stack_b), STACK_A, NORMAL_PUSH);
-        MAX_ITERATION++;
+        to_push = get_node_with_least_combo(stack_b);
+        push_before = get_smallest_bigger_than(*stack_a, to_push);
+        mv = to_push->moves;
+        if(mv[0] == 0 && mv[1] == 0)
+        {
+            px(&stack_b, stack_a, STACK_A);
+            if(to_push->rank > (*stack_a)->next->rank)
+                rx(stack_a, STACK_A);
+        }
+        else if (mv[0] * mv[1] > 0)
+        {
+            if(mv[0] < 0)
+                action = RRX;
+            preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
+            get_node_to_top(&stack_b, to_push, STACK_B, NULL);
+            get_node_to_top(stack_a, push_before, STACK_A, NULL);
+            px(&stack_b, stack_a ,STACK_A);
+        }
+        else {
+        {
+            get_node_to_top(&stack_b, to_push, STACK_B, NULL);
+            get_node_to_top(stack_a, push_before, STACK_A, NULL);
+            px(&stack_b, stack_a ,STACK_A);   
+        }
+        }
+        // MAX_ITERATION++;
     }
-    puts("STACK A");
-    ft_lstiter_int(*stack_a, print);
-    puts("STACK B");
-    ft_lstiter_int(stack_b, print);
+    // iterate_and_calculate(*stack_a, stack_b);
+    // to_push = get_node_with_least_combo(stack_b);
+    // push_before = get_smallest_bigger_than(*stack_a, to_push);
+    // if(!to_push) printf("NO TO PUSH\n"); else printf("TO PUSH: %i\n", to_push->rank);
+    // if(!push_before) printf("NO PUSH BEFORE\n"); else printf("PUSH BEFORE: %i\n", push_before->rank);
+    // if(mv[0] == 0 && mv[1] == 0)
+    // {
+    //     px(&stack_b, stack_a, STACK_A);
+    //     if(to_push->rank > (*stack_a)->next->rank)
+    //     rx(stack_a, STACK_A);
+    // }
+    // puts("STACK A");
+    // ft_lstiter_int(*stack_a, print);
+    // puts("STACK B");
+    // ft_lstiter_int(stack_b, print);
 }

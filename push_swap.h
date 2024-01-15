@@ -42,6 +42,7 @@ typedef struct s_node
     int rank;
     int is_lis;
     int moves[2];
+    int type;
     struct s_node *next;
     struct s_node *prev;
 } t_node;

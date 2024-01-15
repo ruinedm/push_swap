@@ -10,6 +10,9 @@ t_node *ft_lstnew_int(int data)
     node->data = data;
     node->rank = -1;
     node->is_lis = FALSE;
+    node->moves[0] = 0;
+    node->moves[1] = 0;
+    node->type = -1;
     node->next = NULL;
     return (node);
 }

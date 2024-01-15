@@ -316,28 +316,32 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
     int med_pos;
     int x_pos;
     int count;
+    int MAX_ITER;
 
     count = 0;
+    MAX_ITER = 0;
     med_pos = ft_lstsize_int(*stack) / 2;
     x_pos = get_node_position(*stack, node_x);
     if(x_pos > med_pos)
     {
         if(mode)
             *mode = REVERSE_RRX;
-        while(*stack != node_x)
+        while(*stack != node_x && MAX_ITER < 50)
         {
             rrx(stack, flag);
             count++;
+            MAX_ITER++;
         }
     }
     else
     {
         if(mode)
             *mode = REVERSE_RX;
-        while(*stack != node_x)
+        while(*stack != node_x && MAX_ITER < 50)
         {
             rx(stack, flag);
             count++;
+            MAX_ITER++;
         }
     }
     return (count);
