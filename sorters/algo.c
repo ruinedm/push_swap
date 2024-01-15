@@ -40,14 +40,14 @@ void sort_all(t_node **stack_a, int stack_size)
     int r_direction_to_push;
     int r_direction_push_before;
     int i;
-    i = 0;
+    int MAX_ITERATION; // Debugging var
 
+    MAX_ITERATION = 0;
+    i = 0;
     stack_b = NULL;
     analyze_stack(*stack_a, stack_size);
     push_with_pivot(stack_a, &stack_b, stack_size);
-    // if(ft_lstlast_int(*stack_a)->rank < ft_lstlast_int(*stack_a)->prev->rank)
-    // rx(stack_a, STACK_A);
-    while(i < 60)
+    while(i < 2)
     {
     foo = *stack_a;
     loo = ft_lstlast_int(*stack_a);
