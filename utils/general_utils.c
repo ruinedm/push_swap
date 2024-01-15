@@ -1,12 +1,12 @@
 #include "../push_swap.h"
 #include <stdio.h>
 
-void print(int data, int rank, int is_lis)
+void print(int data, int rank, int is_lis, int *moves)
 {
     if(is_lis)
-        printf("VALUE: %d RANK: %d IS_LIS: TRUE\n", data, rank);
+        printf("VALUE: %d // RANK: %d // IS_LIS: TRUE // MOVES B: %i // MOVES A: %i\n", data, rank, moves[0], moves[1]);
     else
-        printf("VALUE: %d RANK: %d IS_LIS: FALSE\n", data, rank);
+        printf("VALUE: %d // RANK: %d // IS_LIS: FALSE // MOVES B: %i // MOVES A: %i\n", data, rank, moves[0], moves[1]);
 }
 
 int ft_strlen(char *str)
@@ -161,7 +161,7 @@ int get_node_position(t_node *stack, t_node *target) {
         stack = stack->next;
         i++;
     }
-    return -1;
+    return (-1);
 }
 
 t_node* get_first_and_last(t_node *stack, int start, int end, int mode) 
@@ -200,12 +200,13 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
     mode = 1;
     mid = stack_size / 2;
     pos = get_node_position(stack, target);
+    if(!stack || !target) printf("FUCK YOU\n");
     // printf("CURRENT POSITION OF RANK: %i IS %i\n", target->rank, pos);
     if(method == RX)
         pos = mid - 1;
     else if(method == RRX)
         pos = mid + 1;
-    if(pos < mid)
+    if(pos <= mid)
     {
         *r_direction = RX;
         looping_node = stack;
@@ -222,6 +223,7 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
         looping_node = looping_node->next;
         cost++;
     }
+    // printf("MODE: %i // MID: :%i // POS: %i\n", *r_direction, mid, pos);
     return (cost);
 }
 // t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size)
@@ -299,7 +301,7 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         next_node = looping_node->next;
         if(looping_node->is_lis == FALSE)
         {
-            if(looping_node->rank > stack_size / 2)
+            if(looping_node->rank > stack_size / 2) // 79
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
             else
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
@@ -308,7 +310,6 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
     }
     if(!is_sorted(*s_stack))
         fix_lis(s_stack);
-    // rx(s_stack, STACK_A); // I NEED TO FIND OUT WHAT TRIGGERS THIS SHIT ASAP
 }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
 {
