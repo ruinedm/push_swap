@@ -179,48 +179,39 @@ void sort_all(t_node **stack_a, int stack_size)
     push_with_pivot(stack_a, &stack_b, stack_size);
     while(ft_lstsize_int(stack_b) > 1)
     {
-        i = 0;
         iterate_and_calculate(*stack_a, stack_b);
         to_push = get_node_with_least_combo(stack_b);
+        if(to_push->rank == stack_size)
+        {
+            push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
+        }
+        else {
         push_before = get_smallest_bigger_than(*stack_a, to_push);
         mv = to_push->moves;
         if(mv[0] == 0 && mv[1] == 0)
-        {
             px(&stack_b, stack_a, STACK_A);
-            if(to_push->rank > (*stack_a)->next->rank)
-                rx(stack_a, STACK_A);
-        }
         else if (mv[0] * mv[1] > 0)
         {
             if(mv[0] < 0)
-                action = RRX;
+                action = RX;
             preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
             get_node_to_top(&stack_b, to_push, STACK_B, NULL);
             get_node_to_top(stack_a, push_before, STACK_A, NULL);
             px(&stack_b, stack_a ,STACK_A);
         }
-        else {
+        else 
         {
             get_node_to_top(&stack_b, to_push, STACK_B, NULL);
             get_node_to_top(stack_a, push_before, STACK_A, NULL);
             px(&stack_b, stack_a ,STACK_A);   
         }
         }
-        // MAX_ITERATION++;
+
+        MAX_ITERATION++;
     }
-    // iterate_and_calculate(*stack_a, stack_b);
-    // to_push = get_node_with_least_combo(stack_b);
-    // push_before = get_smallest_bigger_than(*stack_a, to_push);
-    // if(!to_push) printf("NO TO PUSH\n"); else printf("TO PUSH: %i\n", to_push->rank);
-    // if(!push_before) printf("NO PUSH BEFORE\n"); else printf("PUSH BEFORE: %i\n", push_before->rank);
-    // if(mv[0] == 0 && mv[1] == 0)
-    // {
-    //     px(&stack_b, stack_a, STACK_A);
-    //     if(to_push->rank > (*stack_a)->next->rank)
-    //     rx(stack_a, STACK_A);
-    // }
-    // puts("STACK A");
-    // ft_lstiter_int(*stack_a, print);
-    // puts("STACK B");
-    // ft_lstiter_int(stack_b, print);
+
+    puts("STACK A");
+    ft_lstiter_int(*stack_a, print);
+    puts("STACK B");
+    ft_lstiter_int(stack_b, print);
 }
