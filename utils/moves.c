@@ -8,11 +8,20 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
         printf("pa\n");
     else if (flag == STACK_B)
         printf("pb\n");
+
     tmp = *s_stack;
-    *s_stack = (*s_stack)->next;
-    (*s_stack)->prev = NULL;
-    ft_lstaddfront_int(r_stack, tmp);
+
+    if (*s_stack != NULL) {
+        *s_stack = (*s_stack)->next;
+
+        if (*s_stack != NULL) {
+            (*s_stack)->prev = NULL;
+        }
+        
+        ft_lstaddfront_int(r_stack, tmp);
+    }
 }
+
 
 void rx(t_node **stack, int flag)
 {

@@ -78,6 +78,21 @@ t_node *get_smallest_node(t_node *stack) {
     return smallest_node;
 }
 
+t_node *get_biggest_node(t_node *stack)
+{
+    t_node *biggest_node;
+    t_node *looping_node;
+
+    biggest_node = stack;
+    looping_node = stack->next;
+    while(looping_node)
+    {
+        if(looping_node->rank > biggest_node->rank)
+            biggest_node = looping_node;
+        looping_node = looping_node->next;
+    }
+    return (biggest_node);
+}
 
 int get_smallest_node_position(t_node *stack) 
 {

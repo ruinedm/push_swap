@@ -67,6 +67,7 @@ int is_sorted(t_node *stack);
 void print(int data, int rank, int is_lis, int *moves);
 int ft_strlen(char *str);
 t_node *get_smallest_node(t_node *stack);
+t_node *get_biggest_node(t_node *stack);
 int get_smallest_node_position(t_node *stack);
 int is_reversed(t_node *stack);
 void push_smallest(t_node **s_stack, t_node **r_stack,int flag);
