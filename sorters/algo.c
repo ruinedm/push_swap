@@ -211,8 +211,8 @@ void sort_all(t_node **stack_a, int stack_size)
             px(&stack_b, stack_a, STACK_A);
         else if (mv[0] * mv[1] > 0)
         {
-            if(mv[0] < 0)
-                action = RX;
+            if(mv[0] < 0) // CHOOSING IS INEFFECIENT ENOUGH HERE!!!!!!!
+                action = RRX;
             preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
             get_node_to_top(&stack_b, to_push, STACK_B, NULL);
             get_node_to_top(stack_a, push_before, STACK_A, NULL);
@@ -227,9 +227,8 @@ void sort_all(t_node **stack_a, int stack_size)
     }
     // puts("STACK A");
     // ft_lstiter_int(*stack_a, print);
-    MAX_ITERATION++;
     }
     get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, NULL);
-    puts("STACK A");
-    ft_lstiter_int(*stack_a, print);
+    // puts("STACK A");
+    // ft_lstiter_int(*stack_a, print);
 }
