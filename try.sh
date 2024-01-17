@@ -1,3 +1,51 @@
-ARG="98934 56947 58283 35336 66763 15243 96290 47213 64931 50440 12244 83127 80194 52604 12250 30167 59474 1376 53008 35302 2019 99216 84934 -8096 -5747 88819 62526 40512 81256 -5455 59058 14377 76896 80167 89228 45155 78554 52973 -4627 96515 31409 3067 68083 32587 49414 -5994 93396 68137 5592 97548 22524 29954 -562 87182 8351 79405 7791 18056 66686 36298 89814 -4322 67549 29034 69458 36666 13260 50916 77782 31701 5609 69419 6116 24762 513 19470 60381 78876 86352 66918 28303 14905 23592 78000 69139 86254 77886 64192 39512 6605 26727 67650 -10131 5341 77839 99276 95529 88069 60554 89555"
-echo "$(./push_swap $ARG | wc -l)"
-./push_swap $ARG | ./checker_Mac $ARG
+#!/bin/bash
+
+# Output file for failures
+FAILURE_FILE="failures.txt"
+
+# Variable to store total operations
+TOTAL_OPERATIONS=0
+
+# Function to generate a space-separated list of 200 random numbers
+generate_random_numbers() {
+    echo $(shuf -i 1-100 -n 100)
+}
+
+# Run the script 10 times with different sets of 200 numbers
+for ((i = 1; i <= 1000; i++)); do
+    echo "=== Run $i ==="
+
+    # Generate random numbers
+    ARG=$(generate_random_numbers)
+
+    # Run the script logic
+    OPERATION_COUNT=$(./push_swap $ARG | wc -l)
+    TOTAL_OPERATIONS=$((TOTAL_OPERATIONS + OPERATION_COUNT))
+
+    if [ $OPERATION_COUNT -lt 700 ]; then
+        OK="OK"
+    else
+        OK="KO"
+    fi
+
+    # Capture the output of checker_linux
+    CHECKER_OUTPUT=$(./push_swap $ARG | ./checker_linux $ARG)
+
+    # Print the results
+    echo "Number of operations: $OPERATION_COUNT"
+    echo "CHECKER OUTPUT: $CHECKER_OUTPUT"
+
+    # Check if OK is "OK" and checker output is "OK"
+    if [ "$OK" = "OK" ] && [ "$CHECKER_OUTPUT" = "OK" ]; then
+        echo "Success!"
+    else
+        # Append failures to the designated file
+        echo "Failure! Run $i - Numbers used: $ARG" >> "$FAILURE_FILE"
+    fi
+
+    echo "================"
+done
+
+# Calculate and print the average number of operations
+AVERAGE_OPERATIONS=$((TOTAL_OPERATIONS / 50))
+echo "Average number of operations: $AVERAGE_OPERATIONS"

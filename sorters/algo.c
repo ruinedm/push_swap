@@ -81,8 +81,8 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
     {
         stack_a_size = ft_lstsize_int(stack_a);
         stack_b_size = ft_lstsize_int(stack_b);
-        closest_bigger = get_smallest_bigger_than(stack_a, looping_node); // GOOD
-        if(!closest_bigger || closest_bigger == stack_a) // THE BIGGER OR SMALLER, NO ROTATION NEEDED TO PUSH :)
+        closest_bigger = get_smallest_bigger_than(stack_a, looping_node);
+        if(!closest_bigger || closest_bigger == stack_a)
             count_a = 0;
         else
             count_a = get_cost_to_top(stack_a,closest_bigger, stack_a_size, &r_direction_a, OPTIMAL);
@@ -91,7 +91,6 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
             count_a *= -1;
         if(r_direction_b == RRX)
             count_b *= -1;
-        // printf("COUNT B FOR NODE WITH RANK: %i IS %i\n", looping_node->rank, count_b);
         looping_node->moves[0] = count_b;
         looping_node->moves[1] = count_a;
         looping_node = looping_node->next;
@@ -134,9 +133,9 @@ t_node *get_node_with_least_combo(t_node *stack_b)
     while(looping_node)
     {
         mv = looping_node->moves;
-        if(mv[0] == 0 && mv[1] == 0) // THE WOMBO COMBO, ITS THE BEST
+        if(mv[0] == 0 && mv[1] == 0)
             return (free(moves_array), looping_node);
-        else if(mv[0] * mv[1] > 0) // SAME SIGN FOR BOTH STACKS // RRR OR RR IS POSSIBLE
+        else if(mv[0] * mv[1] > 0)
             moves_array[i] = maxv(abs(mv[0]), abs(mv[1]));
         else
             moves_array[i] = abs(mv[0]) + abs(mv[1]);
@@ -157,21 +156,10 @@ t_node *get_node_with_least_combo(t_node *stack_b)
         looping_node = looping_node->next;
         j++;
     }
-    // print_int_arr(moves_array, size);
     free(moves_array);
     return (looping_node);
 }
-// int ordered_or_semi(t_node *stack)
-// {
-//     t_node *looping_node;
 
-//     looping_node = stack;
-//     if(looping_node->rank == get_smallest_node(stack)->rank)
-//     {
-//         if(is_sorted(stack))
-//     }
-
-// }
 
 void sort_all(t_node **stack_a, int stack_size)
 {
@@ -181,54 +169,44 @@ void sort_all(t_node **stack_a, int stack_size)
     int *mv;
     int i;
     int action;
-    int MAX_ITERATION;
 
-    MAX_ITERATION = 0;
     stack_b = NULL;
     action = RX;
     analyze_stack(*stack_a, stack_size);
     push_with_pivot(stack_a, &stack_b, stack_size);
+    iterate_and_calculate(*stack_a, stack_b);
+
     while(stack_b)
     {
         iterate_and_calculate(*stack_a, stack_b);
         to_push = get_node_with_least_combo(stack_b);
-        // printf("TO PUSH: %i\n", to_push->rank);
         push_before = get_smallest_bigger_than(*stack_a, to_push);
-        if(!push_before) // Not the prob
+        if(!push_before)
         {
-            // printf("TO PUSH: %i\n", to_push->rank);
-            // break;
             get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, NULL);
             push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
-            // push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
-            // push_node_x(&stack_b, stack_a, to_push, STACK_A, PUSH_AND_RX);
-            // break;
         }
         else
         {
-        mv = to_push->moves;
-        if(mv[0] == 0 && mv[1] == 0) // BIGGEST IS ALREADY HANDLED, SO THIS WILL BE THE SMALLEST AND READY TO PUSH :D
-            px(&stack_b, stack_a, STACK_A);
-        else if (mv[0] * mv[1] > 0)
-        {
-            if(mv[0] < 0) // CHOOSING IS INEFFECIENT ENOUGH HERE!!!!!!!
-                action = RRX;
-            preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
-            get_node_to_top(&stack_b, to_push, STACK_B, NULL);
-            get_node_to_top(stack_a, push_before, STACK_A, NULL);
-            px(&stack_b, stack_a ,STACK_A);
+            mv = to_push->moves;
+            if(mv[0] == 0 && mv[1] == 0)
+                px(&stack_b, stack_a, STACK_A);
+            else if (mv[0] * mv[1] > 0)
+            {
+                if(mv[0] < 0)
+                    action = RRX;
+                preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
+                get_node_to_top(&stack_b, to_push, STACK_B, NULL);
+                get_node_to_top(stack_a, push_before, STACK_A, NULL);
+                px(&stack_b, stack_a ,STACK_A);
+            }
+            else
+            {
+                get_node_to_top(&stack_b, to_push, STACK_B, NULL);
+                get_node_to_top(stack_a, push_before, STACK_A, NULL);
+                px(&stack_b, stack_a ,STACK_A);   
+            }
         }
-        else
-        {
-            get_node_to_top(&stack_b, to_push, STACK_B, NULL);
-            get_node_to_top(stack_a, push_before, STACK_A, NULL);
-            px(&stack_b, stack_a ,STACK_A);   
-        }
-    }
-    // puts("STACK A");
-    // ft_lstiter_int(*stack_a, print);
     }
     get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, NULL);
-    // puts("STACK A");
-    // ft_lstiter_int(*stack_a, print);
 }
