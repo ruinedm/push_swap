@@ -341,22 +341,20 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
     {
         if(mode)
             *mode = REVERSE_RRX;
-        while(*stack != node_x && MAX_ITER < 50)
+        while(*stack != node_x)
         {
             rrx(stack, flag);
             count++;
-            MAX_ITER++;
         }
     }
     else
     {
         if(mode)
             *mode = REVERSE_RX;
-        while(*stack != node_x && MAX_ITER < 50)
+        while(*stack != node_x)
         {
             rx(stack, flag);
             count++;
-            MAX_ITER++;
         }
     }
     return (count);
