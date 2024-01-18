@@ -74,8 +74,8 @@ t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);
 void analyze_stack(t_node *stack, int stack_size);
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size);
-void fix_lis(t_node **stack);
 void print_int_arr(int *arr, int arr_size) ;
+
 // PARSING AND CONVERSION UTILS
 int	ft_atoi(char *str, int *error_flag);
 t_node *parser(char *argv[], int stack_size);

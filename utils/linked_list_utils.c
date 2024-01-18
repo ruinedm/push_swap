@@ -13,6 +13,7 @@ t_node *ft_lstnew_int(int data)
     node->moves[0] = 0;
     node->moves[1] = 0;
     node->next = NULL;
+    node->prev = NULL;
     return (node);
 }
 

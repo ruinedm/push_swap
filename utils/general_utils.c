@@ -224,21 +224,6 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
     return (cost);
 }
 
-void fix_lis(t_node **stack)
-{
-    t_node *looping_node;
-    t_node *smallest_node;
-
-    smallest_node = get_smallest_node(*stack);
-    looping_node = *stack;
-    while(looping_node != smallest_node)
-    {
-        rx(stack, STACK_A);
-        looping_node = *stack;
-    }
-}
-
-
 void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
 {
     t_node *smallest_node;
@@ -289,8 +274,7 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         }
         looping_node = next_node;
     }
-    if(!is_sorted(*s_stack))
-        fix_lis(s_stack);
+    get_node_to_top(s_stack, get_smallest_node(*s_stack), STACK_A);
 }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag)
 {
