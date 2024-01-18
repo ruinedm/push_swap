@@ -69,7 +69,8 @@ int is_reversed(t_node *stack)
     return (1);
 }
 
-t_node *get_smallest_node(t_node *stack) {
+t_node *get_smallest_node(t_node *stack) 
+{
 
     t_node *smallest_node = stack;
     t_node *current_node = stack->next;

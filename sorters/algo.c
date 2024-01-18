@@ -88,8 +88,7 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
         closest_bigger = get_smallest_bigger_than(stack_a, looping_node);
         if(!closest_bigger) // BIGGEST ELEMENT
             count_a = get_cost_to_top(stack_a, get_smallest_node(stack_a), stack_a_size, &r_direction_a, OPTIMAL);
-        else if(closest_bigger == stack_a) // SMALLEST ELEMENT
-            count_a = 0;
+        // THE LIST INST ALWAYS SORTED, SETTING 0 FOR BOTH SMALLEST AND BIGGEST IS UNTRUE
         else
             count_a = get_cost_to_top(stack_a,closest_bigger, stack_a_size, &r_direction_a, OPTIMAL);
         count_b = get_cost_to_top(stack_b, looping_node, stack_b_size, &r_direction_b, OPTIMAL);
@@ -183,7 +182,6 @@ void sort_all(t_node **stack_a, int stack_size)
         push_before = get_smallest_bigger_than(*stack_a, to_push);
         if(!push_before)
         {
-            // printf("TO PUSH MOVES: STACK B MOVES: %i // STACK A MOVES :%i\n", to_push->moves[0], to_push->moves[1]);
             get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
             push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
         }
