@@ -12,7 +12,7 @@ generate_random_numbers() {
 }
 
 # Run the script 10 times with different sets of 200 numbers
-for ((i = 1; i <= 1000; i++)); do
+for ((i = 1; i <= 500; i++)); do
     echo "=== Run $i ==="
 
     # Generate random numbers
@@ -47,5 +47,5 @@ for ((i = 1; i <= 1000; i++)); do
 done
 
 # Calculate and print the average number of operations
-AVERAGE_OPERATIONS=$((TOTAL_OPERATIONS / 50))
+AVERAGE_OPERATIONS=$((TOTAL_OPERATIONS / 500))
 echo "Average number of operations: $AVERAGE_OPERATIONS"

@@ -1,5 +1,5 @@
 #include "../push_swap.h"
-#include <stdio.h>
+
 
 int min(int a, int b)
 {
@@ -75,7 +75,11 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
     int stack_a_size;
     int stack_b_size;
 
-
+    closest_bigger = NULL;
+    count_a = 0;
+    count_b = 0;
+    r_direction_a = RX;
+    r_direction_b = RX;
     looping_node = stack_b;
     while(looping_node)
     {
@@ -118,7 +122,6 @@ t_node *get_node_with_least_combo(t_node *stack_b)
     int *mv;
     int i;
     int j;
-    int action;
     int size;
     int min;
 
@@ -129,7 +132,6 @@ t_node *get_node_with_least_combo(t_node *stack_b)
     if(!moves_array)
         return (NULL);
     looping_node = stack_b;
-    action = RX;
     while(looping_node)
     {
         mv = looping_node->moves;
@@ -167,15 +169,11 @@ void sort_all(t_node **stack_a, int stack_size)
     t_node *to_push;
     t_node *push_before;
     int *mv;
-    int i;
     int action;
 
     stack_b = NULL;
     action = RX;
-    analyze_stack(*stack_a, stack_size);
     push_with_pivot(stack_a, &stack_b, stack_size);
-    iterate_and_calculate(*stack_a, stack_b);
-
     while(stack_b)
     {
         iterate_and_calculate(*stack_a, stack_b);
@@ -183,7 +181,7 @@ void sort_all(t_node **stack_a, int stack_size)
         push_before = get_smallest_bigger_than(*stack_a, to_push);
         if(!push_before)
         {
-            get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, NULL);
+            get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
             push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
         }
         else
@@ -196,17 +194,17 @@ void sort_all(t_node **stack_a, int stack_size)
                 if(mv[0] < 0)
                     action = RRX;
                 preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
-                get_node_to_top(&stack_b, to_push, STACK_B, NULL);
-                get_node_to_top(stack_a, push_before, STACK_A, NULL);
+                get_node_to_top(&stack_b, to_push, STACK_B);
+                get_node_to_top(stack_a, push_before, STACK_A);
                 px(&stack_b, stack_a ,STACK_A);
             }
             else
             {
-                get_node_to_top(&stack_b, to_push, STACK_B, NULL);
-                get_node_to_top(stack_a, push_before, STACK_A, NULL);
-                px(&stack_b, stack_a ,STACK_A);   
+                get_node_to_top(&stack_b, to_push, STACK_B);
+                get_node_to_top(stack_a, push_before, STACK_A);
+                px(&stack_b, stack_a ,STACK_A);
             }
         }
     }
-    get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, NULL);
+    get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
 }

@@ -38,5 +38,5 @@ int main(int argc, char *argv[])
     if(!stack_a  || !check_duplicates(stack_a))
         return(printf("Error\n"), 0);    
     sort_handler(&stack_a, stack_size);
-    // ft_lstclear_int(stack_a);
+    ft_lstclear_int(stack_a);
 }

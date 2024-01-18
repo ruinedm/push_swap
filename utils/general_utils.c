@@ -1,5 +1,4 @@
 #include "../push_swap.h"
-#include <stdio.h>
 
 void print(int data, int rank, int is_lis, int *moves)
 {
@@ -41,14 +40,19 @@ void sort_handler(t_node **stack_a, int stack_size)
 {
     if(stack_size == 2)
         printf("ra\n");
-    else if(stack_size == 3)
-        sort3(stack_a);
-    else if(stack_size == 4)
-        sort4(stack_a);
-    else if(stack_size == 5)
-        sort5(stack_a);
     else
-        sort_all(stack_a, stack_size);
+    {
+        analyze_stack(*stack_a, stack_size);
+        if(stack_size == 3)
+            sort3(stack_a);
+        else if(stack_size == 4)
+            sort4(stack_a);
+        else if(stack_size == 5)
+            sort5(stack_a);
+        else
+            sort_all(stack_a, stack_size);
+    }
+
 }
 
 int is_reversed(t_node *stack)
@@ -94,7 +98,7 @@ t_node *get_biggest_node(t_node *stack)
     return (biggest_node);
 }
 
-int get_smallest_node_position(t_node *stack) 
+int  get_smallest_node_position(t_node *stack) 
 {
     t_node *current_node = stack;
     int smallest_rank = current_node->rank;
@@ -131,6 +135,7 @@ int *copy_stack_to_array(t_node *stack)
     }
     return copy_array;
 }
+
 void bubble_sort(int *arr, int n) {
     int i, j, temp;
     for (i = 0; i < n - 1; i++) {
@@ -167,8 +172,10 @@ void rank_nodes(t_node *stack_a, int stack_size)
     }
     free(copy_array);
 }
-int get_node_position(t_node *stack, t_node *target) {
-    int i = 1;
+int get_node_position(t_node *stack, t_node *target) 
+{
+    int i;
+    i = 1;
     while(stack) 
     {
         if(stack == target)
@@ -177,28 +184,6 @@ int get_node_position(t_node *stack, t_node *target) {
         i++;
     }
     return (-1);
-}
-
-t_node* get_first_and_last(t_node *stack, int start, int end, int mode) 
-{
-    t_node *looping_node;
-    t_node *current_end;
-
-    if(!stack) printf("STACK IS NULL!!!!");
-    looping_node = stack;
-    current_end = NULL;
-    while(looping_node)
-    {
-        //if(current_end) printf("CURRENT END RANK:%i\n", current_end->rank);
-        if(looping_node->rank >= start && looping_node->rank <= end) 
-        {
-            if(mode == FIRST)
-                return looping_node;
-            current_end = looping_node;
-        }
-        looping_node = looping_node->next;
-    }
-    return (current_end);
 }
 
 int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direction, int method)
@@ -215,8 +200,6 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
     mode = 1;
     mid = stack_size / 2;
     pos = get_node_position(stack, target);
-    if(!stack || !target) printf("FUCK YOU\n");
-    // printf("CURRENT POSITION OF RANK: %i IS %i\n", target->rank, pos);
     if(method == RX)
         pos = mid - 1;
     else if(method == RRX)
@@ -238,24 +221,8 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
         looping_node = looping_node->next;
         cost++;
     }
-    // printf("MODE: %i // MID: :%i // POS: %i\n", *r_direction, mid, pos);
     return (cost);
 }
-// t_node *find_optimal_move_node(t_node *stack, int chunk_start, int chunk_end, int stack_size)
-// {
-//     t_node *first;
-//     t_node *last;
-//     int cost_first;
-//     int cost_last;
-
-//     first = get_first_and_last(stack, chunk_start, chunk_end, FIRST);
-//     last = get_first_and_last(stack, chunk_start, chunk_end, LAST);
-//     cost_first = get_cost_to_top(stack, first, stack_size);
-//     cost_last = get_cost_to_top(stack, last, stack_size);
-//     if(cost_first > cost_last)
-//         return (last);
-//     return (first);
-// }
 
 void fix_lis(t_node **stack)
 {
@@ -270,7 +237,6 @@ void fix_lis(t_node **stack)
         looping_node = *stack;
     }
 }
-
 
 
 void push_smallest(t_node **s_stack, t_node **r_stack, int flag)
@@ -304,19 +270,19 @@ int is_sorted(t_node *stack)
     }
     return (TRUE);
 }
+
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
 {
     t_node *looping_node;
     t_node *next_node;
 
-    // printf("PIVOT RANK: %i\n", pivot_node->rank);
     looping_node = *s_stack;
     while(looping_node)
     {
         next_node = looping_node->next;
         if(looping_node->is_lis == FALSE)
         {
-            if(looping_node->rank > stack_size / 2) // 79
+            if(looping_node->rank > stack_size / 2)
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
             else
                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
@@ -326,21 +292,17 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
     if(!is_sorted(*s_stack))
         fix_lis(s_stack);
 }
-int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
+int get_node_to_top(t_node **stack, t_node *node_x, int flag)
 {
     int med_pos;
     int x_pos;
     int count;
-    int MAX_ITER;
 
     count = 0;
-    MAX_ITER = 0;
     med_pos = ft_lstsize_int(*stack) / 2;
     x_pos = get_node_position(*stack, node_x);
     if(x_pos > med_pos)
     {
-        if(mode)
-            *mode = REVERSE_RRX;
         while(*stack != node_x)
         {
             rrx(stack, flag);
@@ -349,8 +311,6 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
     }
     else
     {
-        if(mode)
-            *mode = REVERSE_RX;
         while(*stack != node_x)
         {
             rx(stack, flag);
@@ -358,18 +318,6 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode)
         }
     }
     return (count);
-}
-void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode)
-{
-    if(mode == REVERSE_RRX)
-        rotation_count++;
-    for(int i = 0; i < rotation_count; i++) {
-        if(mode == REVERSE_RRX) {
-            rx(stack, flag);
-        } else if(mode == REVERSE_RX) {
-            rrx(stack, flag);
-        }
-    }
 }
 
 
@@ -390,11 +338,4 @@ void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, i
     px(s_stack, r_stack, !flag);
     if(mode == PUSH_AND_RX)
         rx(r_stack, !flag);
-}
-void push_elements(t_node **s_stack, t_node **r_stack, int flag)
-{
-    while (*s_stack != NULL)
-    {
-        px(s_stack, r_stack, flag);
-    }
 }

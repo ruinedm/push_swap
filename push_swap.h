@@ -13,15 +13,9 @@
 #define STACK_A 0
 #define STACK_B 1
 
-#define FIRST 0
-#define LAST 1
-
 #define BIGGER_THAN_ALL 0
 #define SMALLER_THAN_ALL 1
 #define BETWEEN_X_AND_Y 2
-
-#define REVERSE_RX 0
-#define REVERSE_RRX 1
 
 #define TRUE 1
 #define FALSE 0
@@ -42,7 +36,6 @@ typedef struct s_node
     int rank;
     int is_lis;
     int moves[2];
-    int type;
     struct s_node *next;
     struct s_node *prev;
 } t_node;
@@ -71,14 +64,11 @@ t_node *get_biggest_node(t_node *stack);
 int get_smallest_node_position(t_node *stack);
 int is_reversed(t_node *stack);
 void push_smallest(t_node **s_stack, t_node **r_stack,int flag);
-void push_elements(t_node **s_stack, t_node **r_stack, int flag);
 int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direction, int method);
 void sort_all(t_node **stack_a, int stack_size);
-void sort_100(t_node **stack_a, t_node **stack_b);
 void rank_nodes(t_node *stack_a, int stack_size);
 void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, int mode);
-int get_node_to_top(t_node **stack, t_node *node_x, int flag, int *mode);
-void reverse_get_node_to_top(t_node **stack, int rotation_count, int flag, int mode);
+int get_node_to_top(t_node **stack, t_node *node_x, int flag);
 int get_node_position(t_node *stack, t_node *target);
 t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);

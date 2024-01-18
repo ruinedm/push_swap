@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "../push_swap.h"
 
 void print_int_arr(int *arr, int arr_size) 
