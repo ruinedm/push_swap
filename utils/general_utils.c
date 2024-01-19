@@ -119,6 +119,35 @@ int  get_smallest_node_position(t_node *stack)
     return (smallest_position);
 }
 
+t_node *new_node(t_node *node)
+{
+    t_node *copy_node;
+
+    copy_node = ft_lstnew_int(node->data);
+    copy_node->rank = node->rank;
+    copy_node->moves[0] = node->moves[0];
+    copy_node->moves[1] = node->moves[1];
+    copy_node->is_lis = node->is_lis;
+    return (copy_node);
+}
+
+t_node *stack_dup(t_node *stack)
+{
+    t_node *looping_node;
+    t_node *copy;
+    t_node *node;
+
+    copy = NULL;
+    looping_node = stack;
+    while(looping_node)
+    {
+        node = new_node(looping_node);
+        ft_lstaddback_int(&copy, node);
+        looping_node = looping_node->next;
+    }
+    return (copy);
+}
+
 int *copy_stack_to_array(t_node *stack)
 {
     int *copy_array;
@@ -266,6 +295,7 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
     while(looping_node)
     {
         next_node = looping_node->next;
+
         if(looping_node->is_lis == FALSE)
         {
             if(looping_node->rank > stack_size / 2)
@@ -275,7 +305,6 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         }
         looping_node = next_node;
     }
-    get_node_to_top(s_stack, get_smallest_node(*s_stack), STACK_A);
 }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag)
 {

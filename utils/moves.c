@@ -11,7 +11,8 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
 
     tmp = *s_stack;
 
-    if (*s_stack != NULL) {
+    if (*s_stack != NULL) 
+    {
         *s_stack = (*s_stack)->next;
 
         if (*s_stack != NULL) {

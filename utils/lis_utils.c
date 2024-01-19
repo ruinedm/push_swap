@@ -123,27 +123,21 @@ void set_is_lis(t_node *stack, int *lis_arr, int lis_len)
         i++;
     }
 }
+
 void analyze_stack(t_node *stack, int stack_size)
 {
     int *copy_array;
     int lis_len;
     int *lis;
-
-    copy_array = copy_stack_to_array(stack);
+    t_node *copy;
+    
+    puts("HI");
     rank_nodes(stack, stack_size);
+    copy = stack_dup(stack);
+    get_node_to_top(&copy, get_smallest_node(copy), SILENT);
+    copy_array = copy_stack_to_array(copy);
     lis = get_lis(copy_array, stack_size, &lis_len);
     set_is_lis(stack, lis, lis_len);
     free(copy_array);
     free(lis);
 }
-
-
-// int main() 
-// {
-//     int lis_len;
-//     int arr[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
-//     int arr_size = sizeof(arr) / sizeof(arr[0]);
-//     int *list = get_lis(arr, 12, &lis_len);
-//     print_int_arr(list, lis_len);
-//     return 0;
-// }

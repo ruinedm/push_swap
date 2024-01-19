@@ -81,16 +81,14 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
     r_direction_a = RX;
     r_direction_b = RX;
     looping_node = stack_b;
+    stack_a_size = ft_lstsize_int(stack_a);
+    stack_b_size = ft_lstsize_int(stack_b);
     while(looping_node)
     {
-        stack_a_size = ft_lstsize_int(stack_a);
-        stack_b_size = ft_lstsize_int(stack_b);
         closest_bigger = get_smallest_bigger_than(stack_a, looping_node);
-        if(!closest_bigger) // BIGGEST ELEMENT
-            count_a = get_cost_to_top(stack_a, get_smallest_node(stack_a), stack_a_size, &r_direction_a, OPTIMAL);
-        // THE LIST INST ALWAYS SORTED, SETTING 0 FOR BOTH SMALLEST AND BIGGEST IS UNTRUE
-        else
-            count_a = get_cost_to_top(stack_a,closest_bigger, stack_a_size, &r_direction_a, OPTIMAL);
+        if(!closest_bigger)
+            closest_bigger = get_smallest_node(stack_a);
+        count_a = get_cost_to_top(stack_a,closest_bigger, stack_a_size, &r_direction_a, OPTIMAL);
         count_b = get_cost_to_top(stack_b, looping_node, stack_b_size, &r_direction_b, OPTIMAL);
         if(r_direction_a == RRX)
             count_a *= -1;
@@ -162,8 +160,6 @@ t_node *get_node_with_least_combo(t_node *stack_b)
     free(moves_array);
     return (looping_node);
 }
-
-
 void sort_all(t_node **stack_a, int stack_size)
 {
     t_node *stack_b;
@@ -180,32 +176,28 @@ void sort_all(t_node **stack_a, int stack_size)
         iterate_and_calculate(*stack_a, stack_b);
         to_push = get_node_with_least_combo(stack_b);
         push_before = get_smallest_bigger_than(*stack_a, to_push);
+        mv = to_push->moves;
         if(!push_before)
+            push_before = get_smallest_node(*stack_a);
+        if(mv[0] == 0 && mv[1] == 0)
+            px(&stack_b, stack_a, STACK_A);
+        else if (mv[0] * mv[1] > 0)
         {
-            get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
-            push_node_x(&stack_b, stack_a, to_push, STACK_B, PUSH_AND_RX);
+            if(mv[0] < 0)
+                action = RRX;
+            preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
+            get_node_to_top(&stack_b, to_push, STACK_B);
+            get_node_to_top(stack_a, push_before, STACK_A);
+            px(&stack_b, stack_a ,STACK_A);
         }
         else
         {
-            mv = to_push->moves;
-            if(mv[0] == 0 && mv[1] == 0)
-                px(&stack_b, stack_a, STACK_A);
-            else if (mv[0] * mv[1] > 0)
-            {
-                if(mv[0] < 0)
-                    action = RRX;
-                preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
-                get_node_to_top(&stack_b, to_push, STACK_B);
-                get_node_to_top(stack_a, push_before, STACK_A);
-                px(&stack_b, stack_a ,STACK_A);
-            }
-            else
-            {
-                get_node_to_top(&stack_b, to_push, STACK_B);
-                get_node_to_top(stack_a, push_before, STACK_A);
-                px(&stack_b, stack_a ,STACK_A);
-            }
+            get_node_to_top(&stack_b, to_push, STACK_B);
+            get_node_to_top(stack_a, push_before, STACK_A);
+            px(&stack_b, stack_a ,STACK_A);
         }
+        if(!push_before)
+            rx(stack_a, STACK_A);
     }
     get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
 }

@@ -12,6 +12,7 @@
 
 #define STACK_A 0
 #define STACK_B 1
+#define SILENT 3
 
 #define BIGGER_THAN_ALL 0
 #define SMALLER_THAN_ALL 1
@@ -72,6 +73,7 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag);
 int get_node_position(t_node *stack, t_node *target);
 t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);
+t_node *stack_dup(t_node *stack);
 void analyze_stack(t_node *stack, int stack_size);
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size);
 void print_int_arr(int *arr, int arr_size) ;
