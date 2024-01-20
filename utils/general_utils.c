@@ -205,7 +205,7 @@ void rank_nodes(t_node *stack_a, int stack_size)
 int get_node_position(t_node *stack, t_node *target) 
 {
     int i;
-    i = 1;
+    i = 0;
     while(stack) 
     {
         if(stack == target)
@@ -306,7 +306,7 @@ void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
         looping_node = next_node;
     }
 }
-int get_node_to_top(t_node **stack, t_node *node_x, int flag)
+int get_node_to_top(t_node **stack, t_node *node_x, int flag, int called_by)
 {
     int med_pos;
     int x_pos;
@@ -315,6 +315,8 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag)
     count = 0;
     med_pos = ft_lstsize_int(*stack) / 2;
     x_pos = get_node_position(*stack, node_x);
+    // if(called_by == POS) printf("POS\n");
+    // else if (called_by == NEG) printf("NEG\n");
     if(x_pos > med_pos)
     {
         while(*stack != node_x)
@@ -350,6 +352,6 @@ void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, i
             rx(s_stack, flag);
     }
     px(s_stack, r_stack, !flag);
-    if(mode == PUSH_AND_RX)
+    if(mode == PUSH_AND_RX) // THIS MIGHT HAVE RRX AFTER
         rx(r_stack, !flag);
 }

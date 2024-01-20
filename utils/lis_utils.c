@@ -131,10 +131,9 @@ void analyze_stack(t_node *stack, int stack_size)
     int *lis;
     t_node *copy;
     
-    puts("HI");
     rank_nodes(stack, stack_size);
     copy = stack_dup(stack);
-    get_node_to_top(&copy, get_smallest_node(copy), SILENT);
+    get_node_to_top(&copy, get_smallest_node(copy), SILENT ,SILENT);
     copy_array = copy_stack_to_array(copy);
     lis = get_lis(copy_array, stack_size, &lis_len);
     set_is_lis(stack, lis, lis_len);

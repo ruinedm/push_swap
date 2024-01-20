@@ -31,6 +31,10 @@
 #define RRX 1
 #define OPTIMAL 2
 
+
+#define POS 0
+#define NEG 1
+
 typedef struct s_node
 {
     int data;
@@ -69,7 +73,7 @@ int get_cost_to_top(t_node *stack, t_node *target, int stack_size, int *r_direct
 void sort_all(t_node **stack_a, int stack_size);
 void rank_nodes(t_node *stack_a, int stack_size);
 void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, int mode);
-int get_node_to_top(t_node **stack, t_node *node_x, int flag);
+int get_node_to_top(t_node **stack, t_node *node_x, int flag, int called_by);
 int get_node_position(t_node *stack, t_node *target);
 t_node *find_node(t_node *stack, int data, int mode);
 int *copy_stack_to_array(t_node *stack);
