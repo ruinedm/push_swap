@@ -1,26 +1,5 @@
 #include "push_swap.h"
 
-int check_duplicates(t_node *stack)
-{
-    t_node *current_node;
-    t_node *looping_node;
-
-    current_node = stack;
-    while(current_node->next)
-    {
-        looping_node = current_node->next;
-        while(looping_node)
-        {
-            if(current_node->data == looping_node->data)
-                return (0);
-            looping_node = looping_node->next;
-        }
-        current_node = current_node->next;
-    }
-    return (1);
-}
-
-
 
 
 

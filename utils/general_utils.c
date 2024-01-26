@@ -8,6 +8,27 @@ void print(int data, int rank, int is_lis, int *moves)
         printf("VALUE: %d // RANK: %d // IS_LIS: FALSE // MOVES B: %i // MOVES A: %i\n", data, rank, moves[0], moves[1]);
 }
 
+int check_duplicates(t_node *stack)
+{
+    t_node *current_node;
+    t_node *looping_node;
+
+    current_node = stack;
+    while(current_node->next)
+    {
+        looping_node = current_node->next;
+        while(looping_node)
+        {
+            if(current_node->data == looping_node->data)
+                return (0);
+            looping_node = looping_node->next;
+        }
+        current_node = current_node->next;
+    }
+    return (1);
+}
+
+
 int ft_strlen(char *str)
 {
     int i;
@@ -17,6 +38,7 @@ int ft_strlen(char *str)
         i++;
     return (i);
 }
+
 t_node *find_node(t_node *stack, int data, int mode)
 {
     t_node *looping_node;

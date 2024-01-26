@@ -200,12 +200,12 @@ void sort_all(t_node **stack_a, int stack_size)
     int action;
 
     stack_b = NULL;
-    action = RX;
     push_with_pivot(stack_a, &stack_b, stack_size);
     iterate_and_calculate(*stack_a, stack_b);
 
     while (stack_b)
     {
+    action = RX;
         iterate_and_calculate(*stack_a, stack_b);
         to_push = get_best_node(stack_b, ft_lstsize_int(stack_b));
         closest_superior = get_closest_superior(*stack_a, to_push);
@@ -219,10 +219,11 @@ void sort_all(t_node **stack_a, int stack_size)
             if(mv[0] < 0)
                 action = RRX;
             preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
+            //if(abs(mv[0]) < abs(get_cost(stack_b, to_push, ft_lstsize_int(stack_b)))) printf("OLD COST 0: %i, NEW COST 0: %i,\n", mv[0], get_cost(stack_b, to_push, ft_lstsize_int(stack_b)));
+            //if(abs(mv[1]) < abs(get_cost(*stack_a, closest_superior, ft_lstsize_int(*stack_a)))) printf("OLD COST 1: %i, NEW COST 1: %i\n", mv[1], get_cost(*stack_a, closest_superior, ft_lstsize_int(*stack_a)));
             go_to_top(stack_a, closest_superior, STACK_A);
             go_to_top(&stack_b, to_push, STACK_B);
             px(&stack_b, stack_a, STACK_A);
-
         }
         else
         {

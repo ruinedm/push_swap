@@ -33,7 +33,6 @@ void rx(t_node **stack, int flag)
         printf("ra\n");
     else if (flag == STACK_B)
         printf("rb\n");
-
     if (!*stack || !(*stack)->next)
         return;
 
@@ -91,14 +90,14 @@ void ss(t_node **stack_a, t_node **stack_b)
 
 void rr(t_node **stack_a, t_node **stack_b)
 {
-    rx(stack_a, -1);
-    rx(stack_b, -1);
+    rx(stack_a, 5);
+    rx(stack_b, 5);
     printf("rr\n");
 }
 
 void rrr(t_node **stack_a, t_node **stack_b)
 {
-    rrx(stack_a, -1);
-    rrx(stack_b, -1);
+    rrx(stack_a, 5);
+    rrx(stack_b, 5);
     printf("rrr\n");
 }

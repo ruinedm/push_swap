@@ -5,6 +5,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
+# include <fcntl.h>
+# include <unistd.h>
+
+#define BUFFER_SIZE 10
 
 #define NORMAL_NUM 2
 #define COMPLICATED_INPUT 1
@@ -61,6 +65,7 @@ void rr(t_node **stack_a, t_node **stack_b);
 void rrr(t_node **stack_a, t_node **stack_b);
 
 // GENERAL UTILS
+int check_duplicates(t_node *stack);
 int is_sorted(t_node *stack);
 void print(int data, int rank, int is_lis, int *moves);
 int ft_strlen(char *str);
