@@ -172,38 +172,9 @@ void sort_all(t_node **stack_a, int stack_size)
     stack_b = NULL;
     action = RX;
     push_with_pivot(stack_a, &stack_b, stack_size);
-    // printf("END\n");
-    while(stack_b)
-    {
-        iterate_and_calculate(*stack_a, stack_b);
-        to_push = get_node_with_least_combo(stack_b);
-        push_before = get_smallest_bigger_than(*stack_a, to_push);
-        mv = to_push->moves;
-        if(!push_before)
-            push_before = get_smallest_node(*stack_a);
-        if(mv[0] == 0 && mv[1] == 0)
-            px(&stack_b, stack_a, STACK_A);
-        else if (mv[0] * mv[1] > 0)
-        {
-            // printf("SAME\n");
-            if(mv[0] < 0)
-                action = RRX;
-            preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
-            get_node_to_top(&stack_b, to_push, STACK_B, NEG);
-            get_node_to_top(stack_a, push_before, STACK_A, NEG);
-            px(&stack_b, stack_a ,STACK_A);
-        }
-        else
-        {
-            // printf("DIFF\n");
-            get_node_to_top(&stack_b, to_push, STACK_B, POS);
-            get_node_to_top(stack_a, push_before, STACK_B, POS);
-            px(&stack_b, stack_a ,STACK_A);
-        }
-        if(!push_before)
-            rx(stack_a, STACK_A); // THIS MIGHT HAVE RRX AFTER
-    }
-    get_node_to_top(stack_a, get_smallest_node(*stack_a), STACK_A, SILENT);
+
     // puts("STACK A");
     // ft_lstiter_int(*stack_a, print);
+    // puts("STACK B");
+    // ft_lstiter_int(stack_b, print);
 }

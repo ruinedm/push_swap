@@ -285,27 +285,49 @@ int is_sorted(t_node *stack)
     }
     return (TRUE);
 }
-
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
 {
     t_node *looping_node;
     t_node *next_node;
+    int i;
 
+    i = 0;
     looping_node = *s_stack;
-    while(looping_node)
+    while(i < stack_size)
     {
         next_node = looping_node->next;
-
-        if(looping_node->is_lis == FALSE)
-        {
-            if(looping_node->rank > stack_size / 2)
-                push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
-            else
-                push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
-        }
+        if(looping_node->rank < stack_size / 2)
+            px(s_stack, r_stack, STACK_B);
+        else
+            rx(s_stack, STACK_A);
         looping_node = next_node;
+        i++;
     }
+    while(ft_lstsize_int(*s_stack) > 3)
+        px(s_stack, r_stack, STACK_B);
+    sort3(s_stack);
 }
+
+// void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size)
+// {
+//     t_node *looping_node;
+//     t_node *next_node;
+//     int i;
+
+//     while(looping_node)
+//     {
+//         next_node = looping_node->next;
+
+//         if(looping_node->is_lis == FALSE)
+//         {
+//             if(looping_node->rank > stack_size / 2)
+//                 push_node_x(s_stack, r_stack, looping_node, STACK_A, NORMAL_PUSH);
+//             else
+//                 push_node_x(s_stack, r_stack, looping_node, STACK_A, PUSH_AND_RX);
+//         }
+//         looping_node = next_node;
+//     }
+// }
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int called_by)
 {
     int med_pos;
@@ -315,8 +337,6 @@ int get_node_to_top(t_node **stack, t_node *node_x, int flag, int called_by)
     count = 0;
     med_pos = ft_lstsize_int(*stack) / 2;
     x_pos = get_node_position(*stack, node_x);
-    // if(called_by == POS) printf("POS\n");
-    // else if (called_by == NEG) printf("NEG\n");
     if(x_pos > med_pos)
     {
         while(*stack != node_x)
