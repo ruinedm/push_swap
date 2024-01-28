@@ -7,6 +7,10 @@ CC = gcc
 HEADER = push_swap.h
 NAME = push_swap
 
+# BONUS_UTILS = checker/utils/*.c checker/utils/get_next_line/*.c
+# BONUS_SRC = checker/checker.c $(BONUS_UTILS)
+# CHECKER_NAME = checker
+
 all: $(NAME)
 
 $(NAME): $(SRC)
@@ -18,6 +22,3 @@ fclean:
 re: fclean all
 
 .PHONY: all fclean re
-
-run: $(NAME)
-	@(./$(NAME) $(ARGS))

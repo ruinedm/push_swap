@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "../checker.h"
 
 static int	int_checker(const char *str, int i, int sign, t_node *head)
 {
@@ -22,7 +22,7 @@ static int	int_checker(const char *str, int i, int sign, t_node *head)
         printf("Error\n");
         exit(EXIT_FAILURE);
     }
-	return (nb * sign);
+	return ((int)nb * sign);
 }
 
 int	ft_atoi(char *str, t_node *head)

@@ -22,8 +22,9 @@ void preform_action_alot(t_node **stack_a, t_node **stack_b, int sign, int times
 int min_in_arr(int *arr, int arr_size)
 {
     int min;
-    int i = 0;
+    int i;
 
+    i = 0;
     min = arr[0];
     while(i < arr_size)
     {

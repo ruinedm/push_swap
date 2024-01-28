@@ -12,7 +12,7 @@
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define ABS(a) ((a) < 0 ? -(a) : (a))
 
-#define BUFFER_SIZE 10
+
 
 #define NORMAL_NUM 2
 #define COMPLICATED_INPUT 1
