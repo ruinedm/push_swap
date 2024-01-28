@@ -80,6 +80,8 @@ void handle_checker(t_node **stack_a, int stack_size)
         }
         else
         {
+            ft_lstclear_int(*stack_a);
+            ft_lstclear_int(stack_b);
             printf("Error\n");
             exit(EXIT_FAILURE);
         }
@@ -88,4 +90,6 @@ void handle_checker(t_node **stack_a, int stack_size)
         printf("OK\n");
     else
         printf("KO\n");
+    ft_lstclear_int(*stack_a);
+    ft_lstclear_int(stack_b);
 }

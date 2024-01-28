@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         return (0);
     stack_a = parser(argv, stack_size);
     if(!check_duplicates(stack_a))
-        return(printf("Error\n"), 0);
+        return(printf("Error\n"), exit(1), 0);
     rank_nodes(stack_a, stack_size);
     handle_checker(&stack_a, stack_size);
 }
