@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mixed_moves.c                                      :+:      :+:    :+:   */
+/*   bonus_mixed_moves.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:03 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:03:21 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:31:04 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:13:15 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
 void	ss(t_node **stack_a, t_node **stack_b)
 {
-	sx(stack_a, -1);
-	sx(stack_b, -1);
-	printf("ss\n");
+	sx(stack_a);
+	sx(stack_b);
 }
 
 void	rr(t_node **stack_a, t_node **stack_b)
 {
-	rx(stack_a, 5);
-	rx(stack_b, 5);
-	printf("rr\n");
+	rx(stack_a);
+	rx(stack_b);
 }
 
 void	rrr(t_node **stack_a, t_node **stack_b)
 {
-	rrx(stack_a, 5);
-	rrx(stack_b, 5);
-	printf("rrr\n");
+	rrx(stack_a);
+	rrx(stack_b);
 }

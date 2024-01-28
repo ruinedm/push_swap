@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   bonus_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:12 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:04:05 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:31:16 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:14:01 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
 static int	str_type(char *str)
 {
@@ -72,7 +72,8 @@ static int	word_count(char const *s, char c)
 	return (count);
 }
 
-void	handle_complicated_input(t_node **head, char **argv, int i, char *str)
+static void	handle_complicated_input(t_node **head, char **argv, int i,
+		char *str)
 {
 	int	wc;
 

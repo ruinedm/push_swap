@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_utils.c                                 :+:      :+:    :+:   */
+/*   bonus_conversion_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:31:47 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 22:59:04 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:30:52 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:07:00 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
 static int	int_checker(const char *str, int i, int sign, t_node *head)
 {
@@ -36,7 +34,7 @@ static int	int_checker(const char *str, int i, int sign, t_node *head)
 		printf("Error\n");
 		exit(EXIT_FAILURE);
 	}
-	return (nb * sign);
+	return ((int)nb * sign);
 }
 
 int	ft_atoi(char *str, t_node *head)

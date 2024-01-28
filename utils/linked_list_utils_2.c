@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mixed_moves.c                                      :+:      :+:    :+:   */
+/*   linked_list_utils_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:03 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:03:21 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 23:00:56 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:02:10 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ss(t_node **stack_a, t_node **stack_b)
+int	ft_lstsize_int(t_node *lst)
 {
-	sx(stack_a, -1);
-	sx(stack_b, -1);
-	printf("ss\n");
-}
+	int	i;
 
-void	rr(t_node **stack_a, t_node **stack_b)
-{
-	rx(stack_a, 5);
-	rx(stack_b, 5);
-	printf("rr\n");
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
-
-void	rrr(t_node **stack_a, t_node **stack_b)
-{
-	rrx(stack_a, 5);
-	rrx(stack_b, 5);
-	printf("rrr\n");
-}
+// void ft_lstiter_int(t_node *head, void(*f)(int, int, int *))
+// {
+//     if(!head)
+//         return ;
+//     t_node *copy = head;
+//     while(copy->next)
+//     {
+//         f(copy->data, copy->rank, copy->moves);
+//         copy = copy->next;
+//     }
+//     f(copy->data, copy->rank, copy->moves);
+// }

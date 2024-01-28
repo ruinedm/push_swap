@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rank_utils.c                                       :+:      :+:    :+:   */
+/*   bonus_rank_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:18 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:04:21 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:31:21 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:14:21 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
 static int	*copy_stack_to_array(t_node *stack)
 {

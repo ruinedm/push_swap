@@ -1,34 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mixed_moves.c                                      :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:03 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:03:21 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:39:47 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:02:58 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ss(t_node **stack_a, t_node **stack_b)
+int	min(int a, int b)
 {
-	sx(stack_a, -1);
-	sx(stack_b, -1);
-	printf("ss\n");
+	if (a > b)
+		return (b);
+	else
+		return (a);
 }
 
-void	rr(t_node **stack_a, t_node **stack_b)
+int	max(int a, int b)
 {
-	rx(stack_a, 5);
-	rx(stack_b, 5);
-	printf("rr\n");
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
-void	rrr(t_node **stack_a, t_node **stack_b)
+int	abs(int a)
 {
-	rrx(stack_a, 5);
-	rrx(stack_b, 5);
-	printf("rrr\n");
+	if (a < 0)
+		return (-a);
+	else
+		return (a);
+}
+
+int	min_in_arr(int *arr, int arr_size)
+{
+	int	min;
+	int	i;
+
+	i = 0;
+	min = arr[0];
+	while (i < arr_size)
+	{
+		if (arr[i] < min)
+			min = arr[i];
+		i++;
+	}
+	return (min);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   bonus_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:43 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 22:38:51 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:31:27 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:15:05 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "bonus_checker.h"
 
 int	check_duplicates(t_node *stack)
 {
@@ -32,35 +32,18 @@ int	check_duplicates(t_node *stack)
 	return (1);
 }
 
-int	is_sorted(t_node *stack)
-{
-	t_node	*current_node;
-
-	current_node = stack;
-	while (current_node != NULL && current_node->next != NULL)
-	{
-		if (current_node->next->rank != current_node->rank + 1)
-			return (FALSE);
-		current_node = current_node->next;
-	}
-	return (TRUE);
-}
-
 int	main(int argc, char *argv[])
 {
-	int		stack_size;
 	t_node	*stack_a;
+	int		stack_size;
 
-	stack_a = NULL;
 	stack_size = argc - 1;
+	stack_a = NULL;
 	if (argc == 1)
 		return (0);
 	stack_a = parser(argv, stack_size);
 	if (!check_duplicates(stack_a))
-		return (printf("Error\n"), 0);
+		return (printf("Error\n"), exit(1), 0);
 	rank_nodes(stack_a, stack_size);
-	if (is_sorted(stack_a))
-		return (0);
-	sort_handler(&stack_a, stack_size);
-	ft_lstclear_int(stack_a);
+	handle_checker(&stack_a, stack_size);
 }

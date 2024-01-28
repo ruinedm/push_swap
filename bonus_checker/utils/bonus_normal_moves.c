@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normal_moves.c                                     :+:      :+:    :+:   */
+/*   bonus_normal_moves.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:32:08 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:03:39 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/28 22:31:09 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/28 23:13:41 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
-#include "../push_swap.h"
-
-void	px(t_node **s_stack, t_node **r_stack, int flag)
+void	px(t_node **s_stack, t_node **r_stack)
 {
 	t_node	*tmp;
 
-	if (flag == STACK_A)
-		printf("pa\n");
-	else if (flag == STACK_B)
-		printf("pb\n");
 	tmp = *s_stack;
 	if (*s_stack != NULL)
 	{
@@ -32,15 +26,11 @@ void	px(t_node **s_stack, t_node **r_stack, int flag)
 	}
 }
 
-void	rx(t_node **stack, int flag)
+void	rx(t_node **stack)
 {
 	t_node	*first;
 	t_node	*last;
 
-	if (flag == STACK_A)
-		printf("ra\n");
-	else if (flag == STACK_B)
-		printf("rb\n");
 	if (!*stack || !(*stack)->next)
 		return ;
 	first = *stack;
@@ -52,15 +42,11 @@ void	rx(t_node **stack, int flag)
 	first->next = NULL;
 }
 
-void	rrx(t_node **stack, int flag)
+void	rrx(t_node **stack)
 {
 	t_node	*looping_node;
 	t_node	*last;
 
-	if (flag == STACK_A)
-		printf("rra\n");
-	else if (flag == STACK_B)
-		printf("rrb\n");
 	if (!*stack || ft_lstsize_int(*stack) == 1)
 		return ;
 	last = ft_lstlast_int(*stack);
@@ -72,15 +58,13 @@ void	rrx(t_node **stack, int flag)
 	ft_lstaddfront_int(stack, last);
 }
 
-void	sx(t_node **stack, int flag)
+void	sx(t_node **stack)
 {
 	t_node	*first_node;
 	t_node	*second_node;
 
-	if (flag == STACK_A)
-		printf("sa\n");
-	else if (flag == STACK_B)
-		printf("sb\n");
+	if (!*stack || ft_lstsize_int(*stack) == 1)
+		return ;
 	first_node = *stack;
 	second_node = (*stack)->next;
 	first_node->next = second_node->next;
