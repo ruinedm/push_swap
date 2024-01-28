@@ -53,7 +53,7 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
     }
 }
 
-
+// to comment
 void ft_lstiter_int(t_node *head, void(*f)(int, int, int *))
 {
     if(!head)

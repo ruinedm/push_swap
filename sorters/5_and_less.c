@@ -2,28 +2,26 @@
 
 void sort3(t_node **stack_a)
 {
-    int a;
     int b;
     int c;
-    
-    a = (*stack_a)->data;
+
     b = (*stack_a)->next->data;
     c = (*stack_a)->next->next->data;
-    if(a > b && b > c)
+    if((*stack_a)->data > b && b > c)
     {
         rx(stack_a, STACK_A);
         sx(stack_a, STACK_A);
     }
-    else if(a > b && a > c && c > b)
+    else if((*stack_a)->data > b && (*stack_a)->data > c && c > b)
         rx(stack_a, STACK_A);
-    else if(a > b && a < c && c > a)
+    else if((*stack_a)->data > b && (*stack_a)->data < c && c > (*stack_a)->data)
         sx(stack_a, STACK_A);
-    else if(a < b && a > c && b > c)
+    else if((*stack_a)->data < b && (*stack_a)->data > c && b > c)
     {
         rx(stack_a, STACK_A);
         rx(stack_a, STACK_A);
     }
-    else if(a < b && a < c && b > c)
+    else if((*stack_a)->data < b && (*stack_a)->data < c && b > c)
     {
         sx(stack_a, STACK_A);
         rx(stack_a, STACK_A);

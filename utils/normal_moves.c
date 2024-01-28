@@ -8,17 +8,12 @@ void px(t_node **s_stack, t_node **r_stack, int flag)
         printf("pa\n");
     else if (flag == STACK_B)
         printf("pb\n");
-
     tmp = *s_stack;
-
     if (*s_stack != NULL) 
     {
         *s_stack = (*s_stack)->next;
-
-        if (*s_stack != NULL) {
+        if (*s_stack != NULL)
             (*s_stack)->prev = NULL;
-        }
-        
         ft_lstaddfront_int(r_stack, tmp);
     }
 }
@@ -79,25 +74,4 @@ void sx(t_node **stack, int flag)
     first_node->next = second_node->next;
     second_node->next = first_node;
     *stack = second_node;
-}
-
-void ss(t_node **stack_a, t_node **stack_b)
-{
-    sx(stack_a, -1);
-    sx(stack_b, -1);
-    printf("ss\n");
-}
-
-void rr(t_node **stack_a, t_node **stack_b)
-{
-    rx(stack_a, 5);
-    rx(stack_b, 5);
-    printf("rr\n");
-}
-
-void rrr(t_node **stack_a, t_node **stack_b)
-{
-    rrx(stack_a, 5);
-    rrx(stack_b, 5);
-    printf("rrr\n");
 }

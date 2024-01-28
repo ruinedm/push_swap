@@ -1,10 +1,14 @@
 #include "../push_swap.h"
 
-void preform_action_alot(t_node **stack_a, t_node **stack_b, int action, int times)
+void preform_action_alot(t_node **stack_a, t_node **stack_b, int sign, int times)
 {
     int i;
+    int action;
 
     i = 0;
+    action = RX;
+    if(sign < 0)
+        action = RRX;    
     while(i < times)
     {
         if(action == RX)
@@ -14,7 +18,6 @@ void preform_action_alot(t_node **stack_a, t_node **stack_b, int action, int tim
         i++;
     }
 }
-
 
 int min_in_arr(int *arr, int arr_size)
 {
@@ -59,12 +62,10 @@ t_node *get_closest_superior(t_node *stack, t_node *target)
 int get_cost(t_node *stack, t_node *target, int stack_size)
 {
     t_node *looping_node;
-    int pos;
     int cost;
 
-    pos = get_node_position(stack, target);
     cost = 0;
-    if(pos <= stack_size / 2)
+    if(get_node_position(stack, target) <= stack_size / 2)
     {
         looping_node = stack;
         while(looping_node != target)
@@ -112,19 +113,16 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
 t_node *calculate_choice_array(t_node *stack_a,t_node *stack_b, int stack_size, int **choice_array_ptr)
 {
     int *choice_array;
+    int i;
+    int *mv;
 
+    i = 0;
     choice_array = malloc(stack_size * sizeof(int));
     if (!choice_array) 
-    {
-        ft_lstclear_int(stack_a);
-        ft_lstclear_int(stack_b);
-        printf("Error\n");
-        exit(EXIT_FAILURE);
-    }
-    int i = 0;
+        return (ft_lstclear_int(stack_a), ft_lstclear_int(stack_b), printf("Error\n"),exit(EXIT_FAILURE), NULL);
     while (stack_b)
     {
-        int *mv = stack_b->moves;
+        mv = stack_b->moves;
         if (mv[0] == 0 && mv[1] == 0) 
             return(free(choice_array), *choice_array_ptr = NULL, stack_b);
         else if (mv[0] * mv[1] > 0)
@@ -210,13 +208,11 @@ void sort_all(t_node **stack_a, int stack_size)
     t_node *to_push;
     t_node *closest_superior;
     int *mv;
-    int action;
 
     stack_b = NULL;
     push_with_pivot(stack_a, &stack_b, stack_size);
     while (stack_b)
     {
-        action = RX;
         iterate_and_calculate(*stack_a, stack_b);
         to_push = get_best_node(*stack_a,stack_b, ft_lstsize_int(stack_b));
         closest_superior = get_closest_superior(*stack_a, to_push);
@@ -228,11 +224,7 @@ void sort_all(t_node **stack_a, int stack_size)
         else
         {
             if(mv[0] * mv[1] > 0)
-            {
-                if(mv[0] < 0)
-                    action = RRX;
-                preform_action_alot(stack_a, &stack_b, action, MIN(ABS(mv[0]), ABS(mv[1])));
-            }
+                preform_action_alot(stack_a, &stack_b, mv[0], MIN(ABS(mv[0]), ABS(mv[1])));
             ez_push_to_place(stack_a, &stack_b, to_push, closest_superior);
         }
     }

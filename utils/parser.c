@@ -20,7 +20,7 @@ static int str_type(char *str)
     {
         if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || 
               (str[i] == ' ' && (str[i + 1] == '-' || str[i + 1] == '+') && (str[i + 2] >= '0' && str[i + 2] <= '9'))))
-            return INVALID_INPUT;
+            return (INVALID_INPUT);
         i++;
     }
     return (COMPLICATED_INPUT);
@@ -34,7 +34,7 @@ static t_node *add_to_list(t_node **head, char *str)
     value = ft_atoi(str, *head);
     current_node = ft_lstnew_int(value);
     ft_lstaddback_int(head, current_node);
-    return *head;
+    return (*head);
 }
 
 static int	word_count(char const *s, char c)
@@ -102,11 +102,7 @@ t_node *parser(char *argv[], int stack_size)
         else if (type == COMPLICATED_INPUT)
             handle_complicated_input(&head, argv, i, str);
         else if(type == INVALID_INPUT)
-        {
-            ft_lstclear_int(head);
-            printf("Error\n");
-            exit(EXIT_FAILURE);
-        }
+            return(ft_lstclear_int(head), printf("Error\n"), exit(EXIT_FAILURE), NULL);
         i++;
     }
     return (head);
