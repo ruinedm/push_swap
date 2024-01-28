@@ -41,7 +41,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void handle_checker(t_node **stack_a)
+void handle_checker(t_node **stack_a, int stack_size)
 {
     t_node *stack_b;
     char *move;
@@ -84,7 +84,7 @@ void handle_checker(t_node **stack_a)
             exit(EXIT_FAILURE);
         }
     }
-    if(is_sorted(*stack_a))
+    if(ft_lstsize_int(*stack_a)==stack_size && is_sorted(*stack_a))
         printf("OK\n");
     else
         printf("KO\n");

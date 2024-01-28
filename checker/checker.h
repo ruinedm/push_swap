@@ -32,7 +32,7 @@ typedef struct s_node
 
 
 // CHECKER UTILS
-void handle_checker(t_node **stack_a);
+void handle_checker(t_node **stack_a, int stack_size);
 int ft_strlen(char *str);
 
 // GET NEXT LINE
