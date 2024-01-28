@@ -1,24 +1,5 @@
 #include "../push_swap.h"
 
-int min(int a, int b)
-{
-    if(a > b)
-        return b;
-    return a;
-}
-int maxv(int a, int b)
-{
-    if(a > b)
-        return a;
-    return b;
-}
-int abs(int a)
-{
-    if(a < 0)
-        return (-a);
-    return (a);
-}
-
 void preform_action_alot(t_node **stack_a, t_node **stack_b, int action, int times)
 {
     int i;
@@ -146,9 +127,9 @@ t_node *get_best_node(t_node *stack, int stack_size)
         if(mv[0] == 0 && mv[1] == 0)
             return(free(choice_array), looping_node);
         else if(mv[0] * mv[1] > 0)
-            choice_array[i] = maxv(abs(mv[0]), abs(mv[1]));
+            choice_array[i] = MAX(ABS(mv[0]), ABS(mv[1]));
         else
-            choice_array[i] = abs(mv[0]) + abs(mv[1]);
+            choice_array[i] = ABS(mv[0]) + ABS(mv[1]);
         i++;
         looping_node = looping_node->next;
     }
@@ -218,9 +199,7 @@ void sort_all(t_node **stack_a, int stack_size)
         {
             if(mv[0] < 0)
                 action = RRX;
-            preform_action_alot(stack_a, &stack_b, action, min(abs(mv[0]), abs(mv[1])));
-            //if(abs(mv[0]) < abs(get_cost(stack_b, to_push, ft_lstsize_int(stack_b)))) printf("OLD COST 0: %i, NEW COST 0: %i,\n", mv[0], get_cost(stack_b, to_push, ft_lstsize_int(stack_b)));
-            //if(abs(mv[1]) < abs(get_cost(*stack_a, closest_superior, ft_lstsize_int(*stack_a)))) printf("OLD COST 1: %i, NEW COST 1: %i\n", mv[1], get_cost(*stack_a, closest_superior, ft_lstsize_int(*stack_a)));
+            preform_action_alot(stack_a, &stack_b, action, MIN(ABS(mv[0]), ABS(mv[1])));
             go_to_top(stack_a, closest_superior, STACK_A);
             go_to_top(&stack_b, to_push, STACK_B);
             px(&stack_b, stack_a, STACK_A);
@@ -233,8 +212,4 @@ void sort_all(t_node **stack_a, int stack_size)
         }
     }
     go_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
-    // puts("STACK A");
-    // ft_lstiter_int(*stack_a, print);
-    // puts("STACK B");
-    // ft_lstiter_int(stack_b, print);
 }

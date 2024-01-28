@@ -9,7 +9,6 @@ t_node *ft_lstnew_int(int data)
         return (NULL);
     node->data = data;
     node->rank = -1;
-    node->is_lis = FALSE;
     node->moves[0] = 0;
     node->moves[1] = 0;
     node->next = NULL;
@@ -55,30 +54,17 @@ void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add)
 }
 
 
-void ft_lstiter_int(t_node *head, void(*f)(int, int, int, int *))
+void ft_lstiter_int(t_node *head, void(*f)(int, int, int *))
 {
     if(!head)
         return;
     t_node *copy = head;
     while(copy->next)
     {
-        f(copy->data, copy->rank, copy->is_lis, copy->moves);
+        f(copy->data, copy->rank, copy->moves);
         copy = copy->next;
     }
-    f(copy->data, copy->rank, copy->is_lis, copy->moves);
-}
-
-void ft_lstiterback_int(t_node *head, void(*f)(int, int, int))
-{
-    if(!head)
-        return;
-    t_node *copy = ft_lstlast_int(head);
-    while(copy->prev)
-    {
-        f(copy->data, copy->rank, copy->is_lis);
-        copy = copy->prev;
-    }
-    f(copy->data, copy->rank, copy->is_lis);
+    f(copy->data, copy->rank, copy->moves);
 }
 
 void ft_lstclear_int(t_node *head)

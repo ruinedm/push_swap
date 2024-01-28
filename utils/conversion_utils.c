@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-static int	int_checker(const char *str, int i, int sign, int *error_flag)
+static int	int_checker(const char *str, int i, int sign, t_node *head)
 {
 	unsigned long long	nb;
 
@@ -12,18 +12,20 @@ static int	int_checker(const char *str, int i, int sign, int *error_flag)
 	}
     if(sign == 1 && nb > INT_MAX)
     {
-        *error_flag = 0;
-        return (-1);
+        ft_lstclear_int(head);
+        printf("Error\n");
+        exit(EXIT_FAILURE);
     }
     else if(sign == -1 && nb > (unsigned long long)INT_MAX + 1)
     {
-        *error_flag = 0;
-        return(-1);
+        ft_lstclear_int(head);
+        printf("Error\n");
+        exit(EXIT_FAILURE);
     }
 	return ((int)nb * sign);
 }
 
-int	ft_atoi(char *str, int *error_flag)
+int	ft_atoi(char *str, t_node *head)
 {
 	int		sign;
 	size_t	i;
@@ -41,5 +43,5 @@ int	ft_atoi(char *str, int *error_flag)
     }
     while (str[i] == '0')
         i++;
-    return (int_checker(str, i, sign, error_flag));
+    return (int_checker(str, i, sign, head));
 }

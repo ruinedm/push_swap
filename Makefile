@@ -1,5 +1,5 @@
 SORTERS = sorters/5_and_less.c sorters/algoo.c
-UTILS = utils/conversion_utils.c utils/parser.c utils/general_utils.c utils/linked_list_utils.c utils/moves.c utils/lis_utils.c
+UTILS = utils/conversion_utils.c utils/parser.c utils/general_utils.c utils/linked_list_utils.c utils/moves.c
 SRC = push_swap.c $(SORTERS) $(UTILS)
 FLAGS = -Wall -Wextra -Werror
 RM = rm -f

@@ -8,6 +8,10 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+#define MIN(a, b) ((a) > (b) ? (b) : (a))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define ABS(a) ((a) < 0 ? -(a) : (a))
+
 #define BUFFER_SIZE 10
 
 #define NORMAL_NUM 2
@@ -35,15 +39,13 @@
 #define RRX 1
 #define OPTIMAL 2
 
-
-#define POS 0
-#define NEG 1
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
 
 typedef struct s_node
 {
     int data;
     int rank;
-    int is_lis;
     int moves[2];
     struct s_node *next;
     struct s_node *prev;
@@ -67,7 +69,7 @@ void rrr(t_node **stack_a, t_node **stack_b);
 // GENERAL UTILS
 int check_duplicates(t_node *stack);
 int is_sorted(t_node *stack);
-void print(int data, int rank, int is_lis, int *moves);
+void print(int data, int rank, int *moves);
 int ft_strlen(char *str);
 t_node *get_smallest_node(t_node *stack);
 t_node *get_biggest_node(t_node *stack);
@@ -81,14 +83,11 @@ void push_node_x(t_node **s_stack, t_node **r_stack, t_node *node_x, int flag, i
 int get_node_to_top(t_node **stack, t_node *node_x, int flag, int called_by);
 int get_node_position(t_node *stack, t_node *target);
 t_node *find_node(t_node *stack, int data, int mode);
-int *copy_stack_to_array(t_node *stack);
-t_node *stack_dup(t_node *stack);
-void analyze_stack(t_node *stack, int stack_size);
+
 void push_with_pivot(t_node **s_stack,t_node **r_stack, int stack_size);
-void print_int_arr(int *arr, int arr_size) ;
 
 // PARSING AND CONVERSION UTILS
-int	ft_atoi(char *str, int *error_flag);
+int	ft_atoi(char *str, t_node *head);
 t_node *parser(char *argv[], int stack_size);
 
 // LINKED LIST (FOR INT USE ONLY) UTILS
@@ -96,8 +95,7 @@ t_node *ft_lstnew_int(int data);
 void ft_lstaddback_int(t_node **ptr_to_node, t_node *node_to_add);
 void ft_lstaddfront_int(t_node **ptr_to_node, t_node *node_to_add);
 t_node *ft_lstlast_int(t_node *node);
-void ft_lstiter_int(t_node *head, void(*f)(int, int, int, int *));
-void ft_lstclear_int(t_node *head);
+void ft_lstiter_int(t_node *head, void(*f)(int, int, int *));
 int ft_lstsize_int(t_node *lst);
-void ft_lstiterback_int(t_node *head, void(*f)(int, int, int));
+void ft_lstclear_int(t_node *_head);
 #endif
