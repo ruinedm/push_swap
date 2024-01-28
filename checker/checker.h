@@ -69,6 +69,10 @@ int	ft_atoi(char *str, t_node *head);
 t_node *parser(char *argv[], int stack_size);
 
 
+//RANKING UTILS
+void rank_nodes(t_node *stack_a, int stack_size);
+
+
 void print(int data, int rank, int *moves);
 
 #endif

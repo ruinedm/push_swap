@@ -65,7 +65,7 @@ void sx(t_node **stack, int flag)
     t_node *first_node;
     t_node *second_node;
 
-    if(!*stack)
+    if(!*stack || ft_lstsize_int(*stack) == 1)
         return;
     if(flag == STACK_A)
         printf("sa\n");

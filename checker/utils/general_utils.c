@@ -4,7 +4,19 @@ void print(int data, int rank, int *moves)
 {
     printf("VALUE: %d // RANK: %d // MOVES B: %i // MOVES A: %i\n", data, rank, moves[0], moves[1]);
 }
+int is_sorted(t_node *stack)
+{
+    t_node *current_node;
 
+    current_node = stack;
+    while (current_node != NULL && current_node->next != NULL)
+    {
+        if(current_node->next->rank != current_node->rank + 1)
+            return (FALSE);
+        current_node = current_node->next;
+    }
+    return (TRUE);
+}
 int ft_strlen(char *str)
 {
     int i;
@@ -68,8 +80,12 @@ void handle_checker(t_node **stack_a)
         }
         else
         {
-            printf("Move Error\n");
+            printf("Error\n");
             exit(EXIT_FAILURE);
         }
     }
+    if(is_sorted(*stack_a))
+        printf("OK\n");
+    else
+        printf("KO\n");
 }

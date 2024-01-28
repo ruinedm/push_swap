@@ -19,19 +19,6 @@ int check_duplicates(t_node *stack)
     }
     return (1);
 }
-int is_sorted(t_node *stack)
-{
-    t_node *current_node;
-
-    current_node = stack;
-    while (current_node != NULL && current_node->next != NULL)
-    {
-        if(current_node->next->rank != current_node->rank + 1)
-            return (FALSE);
-        current_node = current_node->next;
-    }
-    return (TRUE);
-}
 
 int main(int argc, char *argv[])
 {
@@ -45,7 +32,6 @@ int main(int argc, char *argv[])
     stack_a = parser(argv, stack_size);
     if(!check_duplicates(stack_a))
         return(printf("Error\n"), 0);
-    if(is_sorted(stack_a))
-        return(printf("OK\n"), 0);
+    rank_nodes(stack_a, stack_size);
     handle_checker(&stack_a);
 }
