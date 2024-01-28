@@ -109,47 +109,73 @@ void iterate_and_calculate(t_node *stack_a, t_node *stack_b)
     }
 }
 
-t_node *get_best_node(t_node *stack, int stack_size)
+t_node *calculate_choice_array(t_node *stack_a,t_node *stack_b, int stack_size, int **choice_array_ptr)
 {
-    t_node *looping_node;
-    int *mv;
-    int i;
-    int j;
-    int min;
     int *choice_array;
 
     choice_array = malloc(stack_size * sizeof(int));
-    looping_node = stack;
-    i = 0;
-    while(looping_node)
+    if (!choice_array) 
     {
-        mv = looping_node ->moves;
-        if(mv[0] == 0 && mv[1] == 0)
-            return(free(choice_array), looping_node);
-        else if(mv[0] * mv[1] > 0)
+        ft_lstclear_int(stack_a);
+        ft_lstclear_int(stack_b);
+        printf("Error\n");
+        exit(EXIT_FAILURE);
+    }
+    int i = 0;
+    while (stack_b)
+    {
+        int *mv = stack_b->moves;
+        if (mv[0] == 0 && mv[1] == 0) 
+            return(free(choice_array), *choice_array_ptr = NULL, stack_b);
+        else if (mv[0] * mv[1] > 0)
             choice_array[i] = MAX(ABS(mv[0]), ABS(mv[1]));
-        else
+        else 
             choice_array[i] = ABS(mv[0]) + ABS(mv[1]);
         i++;
-        looping_node = looping_node->next;
+        stack_b = stack_b->next;
     }
+    *choice_array_ptr = choice_array;
+    return NULL;
+}
+
+t_node *find_min_node(t_node *stack, int *choice_array, int stack_size)
+{
+    int i;
+    int j;
+    int min;
+
     i = 0;
     j = 0;
-    looping_node = stack;
     min = min_in_arr(choice_array, stack_size);
-    while(i < stack_size)
+    while (i < stack_size)
     {
-        if(choice_array[i] == min)
+        if (choice_array[i] == min) {
             break;
+        }
         i++;
     }
-    while(j < i)
+    while (j < i)
     {
-        looping_node = looping_node->next;
+        stack = stack->next;
         j++;
     }
-    return(free(choice_array), looping_node);
+    return (stack);
 }
+
+
+t_node *get_best_node(t_node *stack_a,t_node *stack_b, int stack_size)
+{
+    int *choice_array;
+    t_node  *best_node;
+    t_node *result = calculate_choice_array(stack_a,stack_b, stack_size, &choice_array);
+
+    if (result) 
+        return result;
+    best_node = find_min_node(stack_b, choice_array, stack_size);
+    free(choice_array);
+    return best_node;
+}
+
 
 void go_to_top(t_node **stack, t_node *target, int flag)
 {
@@ -171,44 +197,43 @@ void go_to_top(t_node **stack, t_node *target, int flag)
     }
 }
 
+void ez_push_to_place(t_node **stack_a, t_node **stack_b,t_node *to_push, t_node *closest_superior)
+{
+    go_to_top(stack_a, closest_superior, STACK_A);
+    go_to_top(stack_b, to_push, STACK_B);
+    px(stack_b, stack_a, STACK_A);
+}
+
 void sort_all(t_node **stack_a, int stack_size)
 {
     t_node *stack_b;
     t_node *to_push;
     t_node *closest_superior;
     int *mv;
-    int total_moves;
     int action;
 
     stack_b = NULL;
     push_with_pivot(stack_a, &stack_b, stack_size);
-    iterate_and_calculate(*stack_a, stack_b);
-
     while (stack_b)
     {
-    action = RX;
+        action = RX;
         iterate_and_calculate(*stack_a, stack_b);
-        to_push = get_best_node(stack_b, ft_lstsize_int(stack_b));
+        to_push = get_best_node(*stack_a,stack_b, ft_lstsize_int(stack_b));
         closest_superior = get_closest_superior(*stack_a, to_push);
         if(!closest_superior)
             closest_superior = get_smallest_node(*stack_a);
         mv = to_push->moves;
         if(mv[0] == 0 && mv[1] == 0)
             px(&stack_b, stack_a, STACK_A);
-        else if(mv[0] * mv[1] > 0)
-        {
-            if(mv[0] < 0)
-                action = RRX;
-            preform_action_alot(stack_a, &stack_b, action, MIN(ABS(mv[0]), ABS(mv[1])));
-            go_to_top(stack_a, closest_superior, STACK_A);
-            go_to_top(&stack_b, to_push, STACK_B);
-            px(&stack_b, stack_a, STACK_A);
-        }
         else
         {
-            go_to_top(stack_a, closest_superior, STACK_A);
-            go_to_top(&stack_b, to_push, STACK_B);
-            px(&stack_b, stack_a, STACK_A);
+            if(mv[0] * mv[1] > 0)
+            {
+                if(mv[0] < 0)
+                    action = RRX;
+                preform_action_alot(stack_a, &stack_b, action, MIN(ABS(mv[0]), ABS(mv[1])));
+            }
+            ez_push_to_place(stack_a, &stack_b, to_push, closest_superior);
         }
     }
     go_to_top(stack_a, get_smallest_node(*stack_a), STACK_A);
