@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:09:32 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:13:10 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	execute_move(t_node **stack_a, t_node **stack_b, char *move)
 	else if (ft_strcmp(move, "rra\n") == 0)
 		return (rrx(stack_a));
 	else if (ft_strcmp(move, "rrb\n") == 0)
-		return (rx(stack_b));
+		return (rrx(stack_b));
 	else if (ft_strcmp(move, "ss\n") == 0)
 		return (ss(stack_a, stack_b));
 	else if (ft_strcmp(move, "rr\n") == 0)
 		return (rr(stack_a, stack_b));
 	else if (ft_strcmp(move, "rrr\n") == 0)
-		return (rr(stack_a, stack_b));
+		return (rrr(stack_a, stack_b));
 	error_handler(*stack_a, *stack_b);
 }
 
