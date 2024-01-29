@@ -57,6 +57,7 @@ void	handle_checker(t_node **stack_a, int stack_size)
 	while (move != NULL)
 	{
 		execute_move(stack_a, &stack_b, move);
+		free(move);
 		move = get_next_line(0);
 	}
 	if (ft_lstsize_int(*stack_a) == stack_size && is_sorted(*stack_a))

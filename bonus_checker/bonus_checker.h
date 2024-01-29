@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 10
-
+# define OPEN_MAX 10000
 # define STACK_A 0
 # define STACK_B 1
 

@@ -31,7 +31,7 @@ re: fclean all
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJ)
-	$(CC) $(FLAGS) $^ -o bonus_checker/$@
+	$(CC) $(FLAGS) -g $^ -o bonus_checker/$@
 	mv bonus_checker/$(BONUS_NAME) .
 
 bonus_%.o: %.c $(BONUS_INCLUDE)
@@ -44,5 +44,9 @@ bonus_fclean: bonus_clean
 	rm -f $(BONUS_NAME)
 
 bonus_re: bonus_fclean bonus
+
+clean_all: clean bonus_clean
+
+fclean_all: fclean bonus_fclean
 
 .PHONY: all clean fclean re
