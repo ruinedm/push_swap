@@ -97,7 +97,6 @@ t_node	*parser(char *argv[], int stack_size)
 {
 	t_node	*head;
 	int		i;
-	int		wc;
 	int		type;
 	char	*str;
 
@@ -105,7 +104,6 @@ t_node	*parser(char *argv[], int stack_size)
 	head = NULL;
 	while (i < stack_size)
 	{
-		wc = 0;
 		str = argv[i + 1];
 		type = str_type(str);
 		if (type == NORMAL_NUM)
