@@ -12,6 +12,7 @@ BONUS_NAME = checker
 BONUS_SRC = bonus_checker/utils/bonus_execution_utils.c bonus_checker/utils/bonus_rank_utils.c bonus_checker/utils/bonus_parser.c bonus_checker/utils/bonus_normal_moves.c bonus_checker/utils/bonus_mixed_moves.c bonus_checker/utils/bonus_linked_list_utils_1.c bonus_checker/utils/bonus_linked_list_utils_2.c bonus_checker/utils/bonus_general_utils.c bonus_checker/utils/bonus_conversion_utils.c bonus_checker/utils/get_next_line/bonus_get_next_line.c bonus_checker/utils/get_next_line/bonus_get_next_line_utils.c bonus_checker/bonus_checker.c
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 BONUS_INCLUDE = bonus_checker/bonus_checker.h
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -49,4 +50,4 @@ clean_all: clean bonus_clean
 
 fclean_all: fclean bonus_fclean
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus_clean bonus_fclean bonus_re clean_all fclean_all

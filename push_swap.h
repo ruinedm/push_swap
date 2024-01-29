@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:43:40 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:05:48 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:16:46 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ int					max(int a, int b);
 int					abs(int a);
 int					min_in_arr(int *arr, int arr_size);
 // PRINT STACK
-// void print(int data, int rank, int *moves);
+void print(int data, int rank, int *moves);
 
 #endif

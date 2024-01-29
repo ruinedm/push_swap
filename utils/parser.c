@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:12 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:04:05 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:26:45 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	str_type(char *str)
 		i++;
 	if (i == ft_strlen(str))
 		return (NORMAL_NUM);
+	i = 0;
 	while (str[i])
 	{
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' '

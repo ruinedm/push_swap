@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:31:53 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 22:59:48 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:19:07 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	push_with_pivot(t_node **s_stack, t_node **r_stack, int stack_size)
 		px(s_stack, r_stack, STACK_B);
 	sort3(s_stack);
 }
-// void print(int data, int rank, int *moves)
-// {
-//     printf("VALUE: %d // RANK: %d // MOVES B: %i // MOVES A: %i\n", data,
-//rank, moves[0], moves[1]);
-// }
+void print(int data, int rank, int *moves)
+{
+    printf("VALUE: %d // RANK: %d // MOVES B: %i // MOVES A: %i\n", data,
+rank, moves[0], moves[1]);
+}

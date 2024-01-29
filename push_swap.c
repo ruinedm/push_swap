@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:43 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 22:38:51 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:20:53 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char *argv[])
 	rank_nodes(stack_a, stack_size);
 	if (is_sorted(stack_a))
 		return (0);
+	stack_size = ft_lstsize_int(stack_a);
 	sort_handler(&stack_a, stack_size);
 	ft_lstclear_int(stack_a);
 }

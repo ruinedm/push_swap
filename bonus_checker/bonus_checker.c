@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:31:27 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:15:05 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:24:15 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char *argv[])
 	stack_a = parser(argv, stack_size);
 	if (!check_duplicates(stack_a))
 		return (printf("Error\n"), exit(1), 0);
+	stack_size = ft_lstsize_int(stack_a);
 	rank_nodes(stack_a, stack_size);
 	handle_checker(&stack_a, stack_size);
 }
