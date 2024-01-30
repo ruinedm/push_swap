@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:30:52 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:07:00 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:37:20 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static int	int_checker(const char *str, int i, int sign, t_node *head)
 	if (sign == 1 && nb > INT_MAX)
 	{
 		ft_lstclear_int(head);
-		printf("Error\n");
+		ft_putendl_fd("Error", 2);
 		exit(EXIT_FAILURE);
 	}
 	else if (sign == -1 && nb > (unsigned long long)INT_MAX + 1)
 	{
 		ft_lstclear_int(head);
-		printf("Error\n");
+		ft_putendl_fd("Error", 2);
 		exit(EXIT_FAILURE);
 	}
 	return ((int)nb * sign);

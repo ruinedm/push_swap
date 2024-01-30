@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:55:51 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 22:58:05 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:12:47 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_node	*calculate_choice_array(t_node *stack_a, t_node *stack_b,
 	choice_array = malloc(stack_size * sizeof(int));
 	if (!choice_array)
 		return (ft_lstclear_int(stack_a), ft_lstclear_int(stack_b),
-			printf("Error\n"), exit(EXIT_FAILURE), NULL);
+			ft_putendl_fd("Error", 2), exit(EXIT_FAILURE), NULL);
 	while (stack_b)
 	{
 		mv = stack_b->moves;

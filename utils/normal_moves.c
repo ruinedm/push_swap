@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:08 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:03:39 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:15:47 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	px(t_node **s_stack, t_node **r_stack, int flag)
 	t_node	*tmp;
 
 	if (flag == STACK_A)
-		printf("pa\n");
+		ft_putendl_fd("pa", 1);
 	else if (flag == STACK_B)
-		printf("pb\n");
+		ft_putendl_fd("pb", 1);
 	tmp = *s_stack;
 	if (*s_stack != NULL)
 	{
@@ -38,9 +38,9 @@ void	rx(t_node **stack, int flag)
 	t_node	*last;
 
 	if (flag == STACK_A)
-		printf("ra\n");
+		ft_putendl_fd("ra", 1);
 	else if (flag == STACK_B)
-		printf("rb\n");
+		ft_putendl_fd("rb", 1);
 	if (!*stack || !(*stack)->next)
 		return ;
 	first = *stack;
@@ -58,9 +58,9 @@ void	rrx(t_node **stack, int flag)
 	t_node	*last;
 
 	if (flag == STACK_A)
-		printf("rra\n");
+		ft_putendl_fd("rra", 1);
 	else if (flag == STACK_B)
-		printf("rrb\n");
+		ft_putendl_fd("rrb", 1);
 	if (!*stack || ft_lstsize_int(*stack) == 1)
 		return ;
 	last = ft_lstlast_int(*stack);
@@ -78,9 +78,9 @@ void	sx(t_node **stack, int flag)
 	t_node	*second_node;
 
 	if (flag == STACK_A)
-		printf("sa\n");
+		ft_putendl_fd("sa", 1);
 	else if (flag == STACK_B)
-		printf("sb\n");
+		ft_putendl_fd("sb", 1);
 	first_node = *stack;
 	second_node = (*stack)->next;
 	first_node->next = second_node->next;

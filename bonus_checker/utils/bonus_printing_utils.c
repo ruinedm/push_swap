@@ -1,53 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.c                                       :+:      :+:    :+:   */
+/*   bonus_printing_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 22:39:47 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:02:58 by mboukour         ###   ########.fr       */
+/*   Created: 2024/01/30 01:36:44 by mboukour          #+#    #+#             */
+/*   Updated: 2024/01/30 01:36:53 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus_checker.h"
 
-int	min(int a, int b)
+static void	ft_putstr_fd(char *str, int fd)
 {
-	if (a > b)
-		return (b);
-	else
-		return (a);
-}
-
-int	max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-int	abs(int a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
-
-int	min_in_arr(int *arr, int arr_size)
-{
-	int	min;
 	int	i;
 
+	if (fd < 0 || !str)
+		return ;
 	i = 0;
-	min = arr[0];
-	while (i < arr_size)
+	while (str[i])
 	{
-		if (arr[i] < min)
-			min = arr[i];
+		write(fd, &str[i], 1);
 		i++;
 	}
-	return (min);
+}
+
+void	ft_putendl_fd(char *str, int fd)
+{
+	if (fd < 0 || !str)
+		return ;
+	ft_putstr_fd(str, fd);
+	write(fd, "\n", 1);
 }

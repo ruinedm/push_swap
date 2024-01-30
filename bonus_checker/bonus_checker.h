@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:15:21 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:15:37 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:42:34 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 10
-# define OPEN_MAX 10000
+
 # define STACK_A 0
 # define STACK_B 1
 
@@ -47,6 +47,7 @@ void				handle_checker(t_node **stack_a, int stack_size);
 int					ft_strlen(char *str);
 int					ft_strcmp(const char *s1, const char *s2);
 int					is_sorted(t_node *stack);
+int					is_valid_chars(char *str);
 
 // GET NEXT LINE
 char				*get_next_line(int fd);
@@ -73,9 +74,9 @@ void				ft_lstaddback_int(t_node **ptr_to_node,
 void				ft_lstaddfront_int(t_node **ptr_to_node,
 						t_node *node_to_add);
 t_node				*ft_lstlast_int(t_node *node);
-void				ft_lstiter_int(t_node *head, void (*f)(int, int, int *));
 int					ft_lstsize_int(t_node *lst);
 void				ft_lstclear_int(t_node *_head);
+// void				ft_lstiter_int(t_node *head, void (*f)(int, int, int *));
 
 // PARSING AND CONVERSION UTILS
 int					ft_atoi(char *str, t_node *head);
@@ -84,5 +85,7 @@ t_node				*parser(char *argv[], int stack_size);
 // RANKING UTILS
 void				rank_nodes(t_node *stack_a, int stack_size);
 
+// PRINTING UTLS
+void				ft_putendl_fd(char *str, int fd);
 // void print(int data, int rank, int *moves);
 #endif

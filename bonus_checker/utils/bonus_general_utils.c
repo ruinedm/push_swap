@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:28:53 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:10:27 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 00:58:17 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ int	ft_strcmp(const char *s1, const char *s2)
 		i++;
 	}
 	return (0);
+}
+
+int	is_valid_chars(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] == ' ' || (str[i] >= '0' && str[i] <= '9') || str[i] == '+'
+				|| str[i] == '-'))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }
 
 // void print(int data, int rank, int *moves)

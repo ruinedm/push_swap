@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:43:40 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/29 23:16:46 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:17:18 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,19 @@ void				ft_lstaddback_int(t_node **ptr_to_node,
 void				ft_lstaddfront_int(t_node **ptr_to_node,
 						t_node *node_to_add);
 t_node				*ft_lstlast_int(t_node *node);
-void				ft_lstiter_int(t_node *head, void (*f)(int, int, int *));
 int					ft_lstsize_int(t_node *lst);
 void				ft_lstclear_int(t_node *_head);
+// void				ft_lstiter_int(t_node *head, void (*f)(int, int, int *));
 
-// MATH UTILS
+// HELPER UTILS
 int					min(int a, int b);
 int					max(int a, int b);
 int					abs(int a);
 int					min_in_arr(int *arr, int arr_size);
-// PRINT STACK
-void print(int data, int rank, int *moves);
+int					is_valid_chars(char *str);
+
+// PRINTING UTILS
+// void				print(int data, int rank, int *moves);
+void				ft_putendl_fd(char *str, int fd);
 
 #endif

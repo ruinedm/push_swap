@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:12 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/29 23:26:45 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:32:03 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ static int	str_type(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i + 1] == '\0' || !(str[i + 1] >= '0' && str[i + 1] <= '9'))
-			return (INVALID_INPUT);
-		i++;
-	}
+	if (!is_valid_chars(str))
+		return (INVALID_INPUT);
 	while ((str[i] >= '0' && str[i] <= '9'))
 		i++;
 	if (i == ft_strlen(str))
@@ -30,10 +26,13 @@ static int	str_type(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' '
-				|| (str[i] == ' ' && (str[i + 1] == '-' || str[i + 1] == '+')
-					&& (str[i + 2] >= '0' && str[i + 2] <= '9'))))
-			return (INVALID_INPUT);
+		if (str[i] == '-' || str[i] == '+')
+		{
+			if (i == ft_strlen(str) - 1)
+				return (INVALID_INPUT);
+			if (!(i == 0 || str[i - 1] == ' '))
+				return (INVALID_INPUT);
+		}
 		i++;
 	}
 	return (COMPLICATED_INPUT);
@@ -87,7 +86,7 @@ void	handle_complicated_input(t_node **head, char **argv, int i, char *str)
 			str++;
 		if (!head)
 		{
-			printf("Error\n");
+			ft_putendl_fd("Error", 2);
 			exit(EXIT_FAILURE);
 		}
 		wc++;
@@ -112,7 +111,7 @@ t_node	*parser(char *argv[], int stack_size)
 		else if (type == COMPLICATED_INPUT)
 			handle_complicated_input(&head, argv, i, str);
 		else if (type == INVALID_INPUT)
-			return (ft_lstclear_int(head), printf("Error\n"),
+			return (ft_lstclear_int(head), ft_putendl_fd("Error", 2),
 				exit(EXIT_FAILURE), NULL);
 		i++;
 	}

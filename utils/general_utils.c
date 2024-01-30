@@ -6,11 +6,9 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:31:53 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/29 23:19:07 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:32:33 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../push_swap.h"
 
 #include "../push_swap.h"
 
@@ -27,7 +25,7 @@ int	ft_strlen(char *str)
 void	sort_handler(t_node **stack_a, int stack_size)
 {
 	if (stack_size == 2)
-		printf("ra\n");
+		ft_putendl_fd("ra", 1);
 	else
 	{
 		if (stack_size == 3)
@@ -81,9 +79,4 @@ void	push_with_pivot(t_node **s_stack, t_node **r_stack, int stack_size)
 	while (ft_lstsize_int(*s_stack) > 3)
 		px(s_stack, r_stack, STACK_B);
 	sort3(s_stack);
-}
-void print(int data, int rank, int *moves)
-{
-    printf("VALUE: %d // RANK: %d // MOVES B: %i // MOVES A: %i\n", data,
-rank, moves[0], moves[1]);
 }

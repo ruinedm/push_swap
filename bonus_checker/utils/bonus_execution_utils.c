@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/29 23:13:10 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:38:27 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_handler(t_node *stack_a, t_node *stack_b)
 {
 	ft_lstclear_int(stack_a);
 	ft_lstclear_int(stack_b);
-	printf("Error\n");
+	ft_putendl_fd("Error", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -61,9 +61,9 @@ void	handle_checker(t_node **stack_a, int stack_size)
 		move = get_next_line(0);
 	}
 	if (ft_lstsize_int(*stack_a) == stack_size && is_sorted(*stack_a))
-		printf("OK\n");
+		ft_putendl_fd("OK", 1);
 	else
-		printf("KO\n");
+		ft_putendl_fd("KO", 1);
 	ft_lstclear_int(*stack_a);
 	ft_lstclear_int(stack_b);
 }
