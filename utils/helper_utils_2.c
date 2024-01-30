@@ -41,6 +41,20 @@ void	handle_parse_error(t_node *stack_a)
 	exit(EXIT_FAILURE);
 }
 
+int is_only_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i] != ' ')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 // void print(int data, int rank, int *moves)
 // {
 //     printf("VALUE: %d // RANK: %d // MOVES B: %i // MOVES A: %i\n", data,

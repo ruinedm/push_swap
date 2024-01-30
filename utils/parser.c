@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
 static int	str_type(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (!is_valid_chars(str))
+		return (INVALID_INPUT);
+	if (is_only_spaces(str))
 		return (INVALID_INPUT);
 	while ((str[i] >= '0' && str[i] <= '9'))
 		i++;

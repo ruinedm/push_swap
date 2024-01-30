@@ -114,6 +114,7 @@ int					min_in_arr(int *arr, int arr_size);
 int					is_valid_chars(char *str);
 void				handle_parse_error(t_node *stack_a);
 void				ft_putendl_fd(char *str, int fd);
+int					is_only_spaces(char *str);
 // void				print(int data, int rank, int *moves);
 
 #endif
