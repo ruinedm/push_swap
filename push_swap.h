@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:43:40 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:17:18 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:46:21 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
 
 # define NORMAL_NUM 2
