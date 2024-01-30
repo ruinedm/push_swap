@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:38:27 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:18:29 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	handle_checker(t_node **stack_a, int stack_size)
 		free(move);
 		move = get_next_line(0);
 	}
-	if (ft_lstsize_int(*stack_a) == stack_size && is_sorted(*stack_a))
+	if (!stack_b && is_sorted(*stack_a))
 		ft_putendl_fd("OK", 1);
 	else
 		ft_putendl_fd("KO", 1);

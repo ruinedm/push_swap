@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:43 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:46:48 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:19:26 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_a = parser(argv, stack_size);
 	if (!check_duplicates(stack_a))
-		return (ft_putendl_fd("Error", 2), 0);
+		return (ft_lstclear_int(stack_a),("Error", 2), 0);
 	rank_nodes(stack_a, stack_size);
 	if (is_sorted(stack_a))
-		return (0);
+		return (ft_lstclear_int(stack_a),0);
 	stack_size = ft_lstsize_int(stack_a);
 	sort_handler(&stack_a, stack_size);
 	ft_lstclear_int(stack_a);
