@@ -1,5 +1,5 @@
 SORTERS = sorters/5_and_less.c sorters/algo.c
-UTILS = utils/printing_utils.c utils/analytic_utils_1.c utils/analytic_utils_2.c utils/helper_utils.c utils/conversion_utils.c utils/parser.c utils/general_utils.c utils/linked_list_utils_1.c utils/linked_list_utils_2.c utils/normal_moves.c utils/mixed_moves.c utils/rank_utils.c utils/search_utils.c
+UTILS = utils/helper_utils_2.c utils/analytic_utils_1.c utils/analytic_utils_2.c utils/helper_utils_1.c utils/conversion_utils.c utils/parser.c utils/general_utils.c utils/linked_list_utils_1.c utils/linked_list_utils_2.c utils/normal_moves.c utils/mixed_moves.c utils/rank_utils.c utils/search_utils.c
 SRC = push_swap.c $(SORTERS) $(UTILS)
 OBJ = $(SRC:.c=.o)
 CC = cc

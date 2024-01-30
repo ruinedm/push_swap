@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:15:21 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:46:25 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:35:51 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define TRUE 1
 # define FALSE 0
 
+# define SUCCESS 1
+# define FAILURE 0
+
 # define NORMAL_NUM 2
 # define COMPLICATED_INPUT 1
 # define INVALID_INPUT -1
@@ -42,11 +45,12 @@ typedef struct s_node
 }					t_node;
 
 // CHECKER GENERAL UTILS
-void				handle_checker(t_node **stack_a, int stack_size);
+void				handle_checker(t_node **stack_a);
 int					ft_strlen(char *str);
 int					ft_strcmp(const char *s1, const char *s2);
 int					is_sorted(t_node *stack);
 int					is_valid_chars(char *str);
+void				handle_parse_error(t_node *stack_a);
 
 // GET NEXT LINE
 char				*get_next_line(int fd);

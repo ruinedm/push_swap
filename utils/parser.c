@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:12 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:32:03 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:40:35 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,17 @@ static int	str_type(char *str)
 	return (COMPLICATED_INPUT);
 }
 
-static t_node	*add_to_list(t_node **head, char *str)
+static int	add_to_list(t_node **head, char *str)
 {
 	int		value;
 	t_node	*current_node;
 
 	value = ft_atoi(str, *head);
 	current_node = ft_lstnew_int(value);
+	if (!current_node)
+		return (FAILURE);
 	ft_lstaddback_int(head, current_node);
-	return (*head);
+	return (SUCCESS);
 }
 
 static int	word_count(char const *s, char c)
@@ -72,25 +74,25 @@ static int	word_count(char const *s, char c)
 	return (count);
 }
 
-void	handle_complicated_input(t_node **head, char **argv, int i, char *str)
+static int	handle_complicated_input(t_node **head, char **argv, int i,
+		char *str)
 {
 	int	wc;
+	int	flag;
 
 	wc = 0;
 	while (wc < word_count(argv[i + 1], ' '))
 	{
 		while (*str && *str == ' ')
 			str++;
-		*head = add_to_list(head, str);
+		flag = add_to_list(head, str);
+		if (!flag)
+			return (FAILURE);
 		while (*str != ' ' && *str != '\0')
 			str++;
-		if (!head)
-		{
-			ft_putendl_fd("Error", 2);
-			exit(EXIT_FAILURE);
-		}
 		wc++;
 	}
+	return (SUCCESS);
 }
 
 t_node	*parser(char *argv[], int stack_size)
@@ -99,6 +101,7 @@ t_node	*parser(char *argv[], int stack_size)
 	int		i;
 	int		type;
 	char	*str;
+	int		flag;
 
 	i = 0;
 	head = NULL;
@@ -107,12 +110,14 @@ t_node	*parser(char *argv[], int stack_size)
 		str = argv[i + 1];
 		type = str_type(str);
 		if (type == NORMAL_NUM)
-			add_to_list(&head, str);
+			flag = add_to_list(&head, str);
 		else if (type == COMPLICATED_INPUT)
-			handle_complicated_input(&head, argv, i, str);
+			flag = handle_complicated_input(&head, argv, i, str);
 		else if (type == INVALID_INPUT)
 			return (ft_lstclear_int(head), ft_putendl_fd("Error", 2),
 				exit(EXIT_FAILURE), NULL);
+		if (!flag)
+			return (handle_parse_error(head), NULL);
 		i++;
 	}
 	return (head);

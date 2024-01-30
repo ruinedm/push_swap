@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:28:53 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 00:58:17 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:40:06 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ int	is_valid_chars(char *str)
 		i++;
 	}
 	return (TRUE);
+}
+
+void	handle_parse_error(t_node *stack_a)
+{
+	ft_lstclear_int(stack_a);
+	ft_putendl_fd("Error", 2);
+	exit(EXIT_FAILURE);
 }
 
 // void print(int data, int rank, int *moves)

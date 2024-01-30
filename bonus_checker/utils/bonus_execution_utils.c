@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:18:29 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:21:39 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	execute_move(t_node **stack_a, t_node **stack_b, char *move)
 	error_handler(*stack_a, *stack_b);
 }
 
-void	handle_checker(t_node **stack_a, int stack_size)
+void	handle_checker(t_node **stack_a)
 {
 	t_node	*stack_b;
 	char	*move;

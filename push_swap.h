@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:43:40 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 01:46:21 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:43:43 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 
 # define TRUE 1
 # define FALSE 0
+
+# define SUCCESS 1
+# define FAILURE 0
 
 # define RX 0
 # define RRX 1
@@ -110,9 +113,8 @@ int					max(int a, int b);
 int					abs(int a);
 int					min_in_arr(int *arr, int arr_size);
 int					is_valid_chars(char *str);
-
-// PRINTING UTILS
-// void				print(int data, int rank, int *moves);
+void				handle_parse_error(t_node *stack_a);
 void				ft_putendl_fd(char *str, int fd);
+// void				print(int data, int rank, int *moves);
 
 #endif
