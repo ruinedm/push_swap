@@ -6,13 +6,13 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:06:24 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/28 23:06:26 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:48:28 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../bonus_checker.h"
 
-char	*append_buffer(char **ptr_to_save, char *buffer, int bytes_read)
+static char	*append_buffer(char **ptr_to_save, char *buffer, int bytes_read)
 {
 	char	*temp;
 
@@ -32,7 +32,7 @@ char	*append_buffer(char **ptr_to_save, char *buffer, int bytes_read)
 	return (*ptr_to_save);
 }
 
-char	*read_and_append(int fd, char **ptr_to_save)
+static char	*read_and_append(int fd, char **ptr_to_save)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -58,7 +58,7 @@ char	*read_and_append(int fd, char **ptr_to_save)
 	return (*ptr_to_save);
 }
 
-char	*extract_line(char **ptr_to_save)
+static char	*extract_line(char **ptr_to_save)
 {
 	char	*line;
 	char	*temp;

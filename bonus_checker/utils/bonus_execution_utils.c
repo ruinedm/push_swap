@@ -6,13 +6,13 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:21:39 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:48:02 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../bonus_checker.h"
 
-void	error_handler(t_node *stack_a, t_node *stack_b)
+static void	error_handler(t_node *stack_a, t_node *stack_b)
 {
 	ft_lstclear_int(stack_a);
 	ft_lstclear_int(stack_b);

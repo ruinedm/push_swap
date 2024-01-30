@@ -6,14 +6,13 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:43:40 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:43:43 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/01/30 02:49:42 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <fcntl.h>
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
