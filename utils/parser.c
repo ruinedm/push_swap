@@ -6,11 +6,12 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:32:12 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:40:35 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:14:22 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
 static int	str_type(char *str)
 {
 	int	i;

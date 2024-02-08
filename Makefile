@@ -10,7 +10,7 @@ INCLUDE = push_swap.h
 
 BONUS_NAME = checker
 BONUS_DIR = bonus_checker
-BONUS_SRC = $(BONUS_DIR)/utils/bonus_printing_utils.c $(BONUS_DIR)/utils/bonus_execution_utils.c $(BONUS_DIR)/utils/bonus_rank_utils.c $(BONUS_DIR)/utils/bonus_parser.c $(BONUS_DIR)/utils/bonus_normal_moves.c $(BONUS_DIR)/utils/bonus_mixed_moves.c $(BONUS_DIR)/utils/bonus_linked_list_utils_1.c $(BONUS_DIR)/utils/bonus_linked_list_utils_2.c $(BONUS_DIR)/utils/bonus_general_utils.c $(BONUS_DIR)/utils/bonus_conversion_utils.c $(BONUS_DIR)/utils/get_next_line/bonus_get_next_line.c $(BONUS_DIR)/utils/get_next_line/bonus_get_next_line_utils.c $(BONUS_DIR)/$(BONUS_DIR).c
+BONUS_SRC = $(BONUS_DIR)/utils/bonus_moves_handlers.c $(BONUS_DIR)/utils/bonus_printing_utils.c $(BONUS_DIR)/utils/bonus_execution_utils.c $(BONUS_DIR)/utils/bonus_rank_utils.c $(BONUS_DIR)/utils/bonus_parser.c $(BONUS_DIR)/utils/bonus_normal_moves.c $(BONUS_DIR)/utils/bonus_mixed_moves.c $(BONUS_DIR)/utils/bonus_linked_list_utils_1.c $(BONUS_DIR)/utils/bonus_linked_list_utils_2.c $(BONUS_DIR)/utils/bonus_general_utils.c $(BONUS_DIR)/utils/bonus_conversion_utils.c $(BONUS_DIR)/utils/get_next_line/bonus_get_next_line.c $(BONUS_DIR)/utils/get_next_line/bonus_get_next_line_utils.c $(BONUS_DIR)/$(BONUS_DIR).c
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 BONUS_INCLUDE = $(BONUS_DIR)/bonus_checker.h
 

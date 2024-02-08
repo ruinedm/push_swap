@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:31:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:39:06 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:16:42 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	str_type(char *str)
 
 	i = 0;
 	if (!is_valid_chars(str))
+		return (INVALID_INPUT);
+	if (is_only_spaces(str))
 		return (INVALID_INPUT);
 	while ((str[i] >= '0' && str[i] <= '9'))
 		i++;

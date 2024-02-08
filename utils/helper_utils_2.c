@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:11:42 by mboukour          #+#    #+#             */
-/*   Updated: 2024/01/30 02:43:05 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:29:41 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	handle_parse_error(t_node *stack_a)
 	exit(EXIT_FAILURE);
 }
 
-int is_only_spaces(char *str)
+int	is_only_spaces(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] != ' ')
 			return (FALSE);
