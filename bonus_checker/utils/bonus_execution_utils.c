@@ -6,7 +6,7 @@
 /*   By: mboukour <mboukour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:27:16 by mboukour          #+#    #+#             */
-/*   Updated: 2024/02/09 19:14:40 by mboukour         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:35:43 by mboukour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_cmd	*read_moves(t_node *stack_a)
 	while (move != NULL)
 	{
 		identifier = identify_move(move);
-		save_cmd(&cmd_head, move, identifier, stack_a);
 		if (identifier == -1)
 			error_handler(&cmd_head, stack_a);
+		save_cmd(&cmd_head, move, identifier, stack_a);
 		move = get_next_line(0);
 	}
 	return (cmd_head);

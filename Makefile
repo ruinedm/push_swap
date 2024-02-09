@@ -33,7 +33,7 @@ re: fclean all
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJ)
-	$(CC) $(FLAGS) -g $^ -o $(BONUS_DIR)/$@
+	$(CC) $(FLAGS) $^ -o $(BONUS_DIR)/$@
 
 bonus_%.o: %.c $(BONUS_INCLUDE)
 	$(CC) $(FLAGS) -c $< -o $@
